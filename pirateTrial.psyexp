@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="2020.1.3">
+<PsychoPy2experiment encoding="utf-8" version="2020.1.2">
   <Settings>
     <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
     <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
@@ -39,7 +39,7 @@
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
         <Param name="flipVert" updates="constant" val="False" valType="bool"/>
-        <Param name="image" updates="constant" val="piratetask" valType="str"/>
+        <Param name="image" updates="constant" val="stimuli/piratetask.bmp" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
         <Param name="mask" updates="constant" val="None" valType="str"/>
         <Param name="name" updates="None" val="background" valType="code"/>
@@ -59,16 +59,16 @@
       </ImageComponent>
       <KeyboardComponent name="key_resp">
         <Param name="allowedKeys" updates="constant" val="'left','right'" valType="code"/>
-        <Param name="correctAns" updates="constant" val="$CorrAns" valType="str"/>
+        <Param name="correctAns" updates="constant" val="left" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="discard previous" updates="constant" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="name" updates="None" val="key_resp" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="5.0" valType="code"/>
+        <Param name="startVal" updates="None" val="2" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="store" updates="constant" val="last key" valType="str"/>
@@ -76,23 +76,51 @@
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
       <CodeComponent name="code">
-        <Param name="Begin Experiment" updates="constant" val="Lbluewin = &quot;Lbluewin.bmp&quot;&amp;#10;&amp;#10;Lbluelose = &quot;Lbluelose.bmp&quot;&amp;#10;Rbluewin = &quot;Rbluewin.bmp&quot;&amp;#10;Rbluelose = &quot;Rbluelose.bmp&quot;&amp;#10;Lgreenwin = &quot;Lgreenwin.bmp&quot;&amp;#10;Lgreenlose = &quot;Lgreenlose.bmp&quot;&amp;#10;Rgreenwin = &quot;Rgreenwin.bmp&quot;&amp;#10;Rgreenlose = &quot;Rgreenlose.bmp&quot;&amp;#10;&amp;#10;BG = 1&amp;#10;&amp;#10;if response.keys == 'left'&amp;#10;&amp;#10;if BG = 1 &amp;#10;&amp;#10;imageVariable = Lbluewin + str(counter) + &quot;Lbluewin.bmp&quot;&amp;#10;else&amp;#10;&amp;#10;if response.keys == 'right'&amp;#10;imagevariable = Lbluelose + str(counter) + &quot;Lbluelose.bmp&quot;&amp;#10;break&amp;#10;&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="# Code in here is run at the very beginning of the experiment&amp;#10;# Put stuff here that you need to run once but doesn't change&amp;#10;&amp;#10;imagePath = &quot;stimuli/&quot; # This establishes where the stimuli are stored&amp;#10;imageVariable = None # Need this to initialise the feedback image display&amp;#10;&amp;#10;# I've left this here just in case you need it, but it's commented out so won't run&amp;#10;&amp;#10;#Lbluewin = &quot;Lbluewin.bmp&quot;&amp;#10;#Lbluelose = &quot;Lbluelose.bmp&quot;&amp;#10;#Rbluewin = &quot;Rbluewin.bmp&quot;&amp;#10;#Rbluelose = &quot;Rbluelose.bmp&quot;&amp;#10;#Lgreenwin = &quot;Lgreenwin.bmp&quot;&amp;#10;#Lgreenlose = &quot;Lgreenlose.bmp&quot;&amp;#10;#Rgreenwin = &quot;Rgreenwin.bmp&quot;&amp;#10;#Rgreenlose = &quot;Rgreenlose.bmp&quot;" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="# This code will run at the end of the routine in which it is placed&amp;#10;# Useful for making adjustments to the following routine based on responses in the current routine&amp;#10;&amp;#10;# Ensure that the object you are accessing ('key_resp') is the named exactly the same here as in the builder&amp;#10;if key_resp.keys == 'left': # Start by checking which key was pressed&amp;#10;    if key_resp.corr: # Then see if the response was correct&amp;#10;        imageVariable = imagePath + &quot;Lgreenwin.bmp&quot; # If yes then display the treasure&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenlose.bmp&quot; # Otherwise show the empty chest&amp;#10;elif key_resp.keys == 'right': # Same as above but on the other side &amp;#10;    if key_resp.corr:&amp;#10;        imageVariable = imagePath + &quot;Rbluewin.bmp&quot; # The predefined image path is added to the file name&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluelose.bmp&quot;&amp;#10;&amp;#10;# Use this to set the image in the following routine&amp;#10;# Again be sure that the object called is named the same thing as the object in the builder&amp;#10;image.setImage(imageVariable)&amp;#10;" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code" valType="code"/>
       </CodeComponent>
     </Routine>
+    <Routine name="feedback">
+      <ImageComponent name="image">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="set every repeat" val="$imageVariable" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="image" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(2, 2)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="5.0" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </ImageComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="studyTrial"/>
+    <Routine name="feedback"/>
   </Flow>
 </PsychoPy2experiment>

@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on April 17, 2020, at 18:24
+This experiment was created using PsychoPy3 Experiment Builder (v2020.1.2),
+    on Fri 17 Apr 2020 13:37:14 BST
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -35,7 +35,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-psychopyVersion = '2020.1.3'
+psychopyVersion = '2020.1.2'
 expName = 'pirateTrial'  # from the Builder filename that created this script
 expInfo = {'participant': '', 'session': '001'}
 dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\tobiiuser\\Documents\\PsychoPyDemo\\stimuli\\pirateTrial.py',
+    originPath='/home/dan/Projects/Pirate_tasks/pirateTrial.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -85,30 +85,26 @@ studyTrialClock = core.Clock()
 background = visual.ImageStim(
     win=win,
     name='background', 
-    image='piratetask', mask=None,
+    image='stimuli/piratetask.bmp', mask=None,
     ori=0, pos=(0, 0), size=(2, 2),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
 key_resp = keyboard.Keyboard()
-Lbluewin = "Lbluewin.bmp"
-Lbluelose = "Lbluelose.bmp"
-Rbluewin = "Rbluewin.bmp"
-Rbluelose = "Rbluelose.bmp"
-Lgreenwin = "Lgreenwin.bmp"
-Lgreenlose = "Lgreenlose.bmp"
-Rgreenwin = "Rgreenwin.bmp"
-Rgreenlose = "Rgreenlose.bmp"
+imagePath = "stimuli/"
+imageVariable = None
 
 
-#if the left pirate is selected and it is blue and this is where the treasure is
-if response.keys=='left'
-  if BG = 1:
-    imageVariable = Lbluewin + str(counter) + "Lbluewin.bmp"
-    else if BG = 0
-     imagevariable = Lbluelose + str(counter) + "Lbluelose.bmp"
-  else if respons.keys =='right'
-  imageVariable = Rbluewin + str(counter) + "Lbluewin.bmp"
+# Initialize components for Routine "feedback"
+feedbackClock = core.Clock()
+image = visual.ImageStim(
+    win=win,
+    name='image', 
+    image=imageVariable, mask=None,
+    ori=0, pos=(0, 0), size=(2, 2),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=0.0)
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -155,7 +151,7 @@ while continueRoutine:
     
     # *key_resp* updates
     waitOnFlip = False
-    if key_resp.status == NOT_STARTED and tThisFlip >= 5.0-frameTolerance:
+    if key_resp.status == NOT_STARTED and tThisFlip >= 2-frameTolerance:
         # keep track of start time/frame for later
         key_resp.frameNStart = frameN  # exact frame index
         key_resp.tStart = t  # local t and not account for scr refresh
@@ -173,10 +169,12 @@ while continueRoutine:
             key_resp.keys = _key_resp_allKeys[-1].name  # just the last key pressed
             key_resp.rt = _key_resp_allKeys[-1].rt
             # was this correct?
-            if (key_resp.keys == str(CorrAns)) or (key_resp.keys == CorrAns):
+            if (key_resp.keys == str("'left'")) or (key_resp.keys == "'left'"):
                 key_resp.corr = 1
             else:
                 key_resp.corr = 0
+            # a response ends the routine
+            continueRoutine = False
     
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -205,7 +203,7 @@ thisExp.addData('background.stopped', background.tStopRefresh)
 if key_resp.keys in ['', [], None]:  # No response was made
     key_resp.keys = None
     # was no response the correct answer?!
-    if str(CorrAns).lower() == 'none':
+    if str("'left'").lower() == 'none':
        key_resp.corr = 1;  # correct non-response
     else:
        key_resp.corr = 0;  # failed to respond (incorrectly)
@@ -217,8 +215,110 @@ if key_resp.keys != None:  # we had a response
 thisExp.addData('key_resp.started', key_resp.tStartRefresh)
 thisExp.addData('key_resp.stopped', key_resp.tStopRefresh)
 thisExp.nextEntry()
+#Lbluewin = "Lbluewin.bmp"
+
+#Lbluelose = "Lbluelose.bmp"
+#Rbluewin = "Rbluewin.bmp"
+#Rbluelose = "Rbluelose.bmp"
+#Lgreenwin = "Lgreenwin.bmp"
+#Lgreenlose = "Lgreenlose.bmp"
+#Rgreenwin = "Rgreenwin.bmp"
+#Rgreenlose = "Rgreenlose.bmp"
+
+if key_resp.keys == 'left':
+    if key_resp.correct:
+        imageVariable = imagepath + "Lbluewin.bmp"
+    else:
+        imageVariable = imagepath + "Lbluelose.bmp"
+elif key_resp.keys == 'right':
+    if key_resp.correct:
+        imageVariable = imagepath + "Rgreenwin.bmp"
+    else:
+        imageVariable = imagepath + "Rgreenlose.bmp"
+
+
+
+#if BG = 1 
+
+#imageVariable = Lbluewin + str(counter) + "Lbluewin.bmp"
+#else
+
+#if response.keys == 'right'
+#imagevariable = Lbluelose + str(counter) + "Lbluelose.bmp"
+#break
+
+
 # the Routine "studyTrial" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
+
+# ------Prepare to start Routine "feedback"-------
+continueRoutine = True
+routineTimer.add(5.000000)
+# update component parameters for each repeat
+# keep track of which components have finished
+feedbackComponents = [image]
+for thisComponent in feedbackComponents:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+feedbackClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
+
+# -------Run Routine "feedback"-------
+while continueRoutine and routineTimer.getTime() > 0:
+    # get current time
+    t = feedbackClock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=feedbackClock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *image* updates
+    if image.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        image.frameNStart = frameN  # exact frame index
+        image.tStart = t  # local t and not account for scr refresh
+        image.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(image, 'tStartRefresh')  # time at next scr refresh
+        image.setAutoDraw(True)
+    if image.status == STARTED:
+        # is it time to stop? (based on global clock, using actual start)
+        if tThisFlipGlobal > image.tStartRefresh + 5.0-frameTolerance:
+            # keep track of stop time/frame for later
+            image.tStop = t  # not accounting for scr refresh
+            image.frameNStop = frameN  # exact frame index
+            win.timeOnFlip(image, 'tStopRefresh')  # time at next scr refresh
+            image.setAutoDraw(False)
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in feedbackComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "feedback"-------
+for thisComponent in feedbackComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+thisExp.addData('image.started', image.tStartRefresh)
+thisExp.addData('image.stopped', image.tStopRefresh)
 
 # Flip one final time so any remaining win.callOnFlip() 
 # and win.timeOnFlip() tasks get executed before quitting
