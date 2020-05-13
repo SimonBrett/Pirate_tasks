@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on May 13, 2020, at 12:29
+    on May 13, 2020, at 12:35
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\Daniel\\Documents\\GitHub\\Pirate_tasks\\pirateTrial.py',
+    originPath='C:\\Users\\Daniel\\Documents\\GitHub\\Pirate_tasks\\pirateTrial_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -113,23 +113,20 @@ prob_bg = [(trial_list_s, trial_list_vi, trial_list_vii, trial_list_vi, trial_li
 
 # Initialize components for Routine "studyTrial"
 studyTrialClock = core.Clock()
+r_val = []
+l_val = []
+
 #create reward values
 for t in range(0,num_trial):
-    r_val = rand.randint(1,101)
-    l_val = 100-r_val
+    val = rand.randint(1,101)
+    r_val.append(val)
+    l_val.append(100-val)
 
 player_score = 0
 pirate_level = 0
 level_limit = 460
 leveled_up = False
 
-R_text = visual.TextStim(win=win, name='R_text',
-    text='default text',
-    font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
-    color='white', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-1.0);
 background = visual.ImageStim(
     win=win,
     name='background', 
@@ -137,11 +134,18 @@ background = visual.ImageStim(
     ori=0, pos=(0, 0), size=(2, 2),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=-2.0)
+    texRes=128, interpolate=True, depth=-1.0)
+R_text = visual.TextStim(win=win, name='R_text',
+    text='default text',
+    font='Arial',
+    pos=(0.2, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
 L_text = visual.TextStim(win=win, name='L_text',
     text='default text',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    pos=(-0.2, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-3.0);
@@ -240,7 +244,7 @@ for thisTrial in trials:
     trial_r_val = r_val[ currentLoop.thisN ]
     trial_l_val = l_val[ currentLoop.thisN ]
     
-    logFile.info('test')
+    #logFile.info('test')
     print(currentLoop.thisN)
     print(trial_r_val)
     
@@ -251,7 +255,7 @@ for thisTrial in trials:
     key_resp.rt = []
     _key_resp_allKeys = []
     # keep track of which components have finished
-    studyTrialComponents = [R_text, background, L_text, key_resp]
+    studyTrialComponents = [background, R_text, L_text, key_resp]
     for thisComponent in studyTrialComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -274,15 +278,6 @@ for thisTrial in trials:
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
         
-        # *R_text* updates
-        if R_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            R_text.frameNStart = frameN  # exact frame index
-            R_text.tStart = t  # local t and not account for scr refresh
-            R_text.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(R_text, 'tStartRefresh')  # time at next scr refresh
-            R_text.setAutoDraw(True)
-        
         # *background* updates
         if background.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
@@ -291,6 +286,15 @@ for thisTrial in trials:
             background.tStartRefresh = tThisFlipGlobal  # on global time
             win.timeOnFlip(background, 'tStartRefresh')  # time at next scr refresh
             background.setAutoDraw(True)
+        
+        # *R_text* updates
+        if R_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            R_text.frameNStart = frameN  # exact frame index
+            R_text.tStart = t  # local t and not account for scr refresh
+            R_text.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(R_text, 'tStartRefresh')  # time at next scr refresh
+            R_text.setAutoDraw(True)
         
         # *L_text* updates
         if L_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -378,10 +382,10 @@ for thisTrial in trials:
     # Again be sure that the object called is named the same thing as the object in the builder
     image.setImage(imageVariable)
     
-    trials.addData('R_text.started', R_text.tStartRefresh)
-    trials.addData('R_text.stopped', R_text.tStopRefresh)
     trials.addData('background.started', background.tStartRefresh)
     trials.addData('background.stopped', background.tStopRefresh)
+    trials.addData('R_text.started', R_text.tStartRefresh)
+    trials.addData('R_text.stopped', R_text.tStopRefresh)
     trials.addData('L_text.started', L_text.tStartRefresh)
     trials.addData('L_text.stopped', L_text.tStopRefresh)
     # check responses
