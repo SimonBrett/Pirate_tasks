@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on July 07, 2020, at 17:38
+    on July 07, 2020, at 10:31
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\tobiiuser\\Documents\\GitHub\\Pirate_tasks\\pirateTrial_lastrun.py',
+    originPath='C:\\Users\\Daniel\\Documents\\GitHub\\Pirate_tasks\\pirateTrial_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -114,7 +114,7 @@ rand.shuffle(trial_list_s)
 rand.shuffle(trial_list_vi)
 rand.shuffle(trial_list_vii)
 #overall task probability
-prob_bg = [(trial_list_s, trial_list_vi, trial_list_vii, trial_list_vi)]
+prob_bg = trial_list_s + trial_list_vi + trial_list_vii + trial_list_vi
 
 
 
@@ -206,14 +206,14 @@ fdbck_text = visual.TextStim(win=win, name='fdbck_text',
 feedbackFrame = visual.Rect(
     win=win, name='feedbackFrame',
     width=(0.35, 0.55)[0], height=(0.35, 0.55)[1],
-    ori=0, pos=(0, -0.2),
+    ori=0, pos=(0, -0.15),
     lineWidth=1, lineColor=[1.000,1.000,-1.000], lineColorSpace='rgb',
     fillColor=None, fillColorSpace='rgb',
     opacity=1, depth=-4.0, interpolate=True)
 feedbackFill = visual.Rect(
     win=win, name='feedbackFill',
     width=(0.35, 0.55)[0], height=(0.35, 0.55)[1],
-    ori=0, pos=(0, -0.2),
+    ori=0, pos=(0, -1.5),
     lineWidth=1, lineColor=None, lineColorSpace='rgb',
     fillColor=[1.000,1.000,-1.000], fillColorSpace='rgb',
     opacity=1, depth=-5.0, interpolate=True)
@@ -274,9 +274,9 @@ for thisComponent in IntroComponents:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-trials = data.TrialHandler(nReps=2, method='random', 
+trials = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
-    trialList=[None],
+    trialList=data.importConditions('trialList.xlsx'),
     seed=None, name='trials')
 thisExp.addLoop(trials)  # add the loop to the experiment
 thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
@@ -308,14 +308,13 @@ for thisTrial in trials:
     right_pos = (-0.5, -0.3)
     
     # Pre-generated array way of changing hint correct probability
-    corr_hint_chance = hint_prob[ currentLoop.thisN ]
+    #corr_hint_chance = hint_prob[ currentLoop.thisN ]
     
     # Multiple ifs way of changing hint correct probability
-    #if currentLoop.thisN < 80:
-    #    corr_hint_chance = 0.75
-    #elif currentLoop.thisN < 160:
-    #    corr_hint_chance = 0.15
-    #...
+    if currentLoop.thisN < 80:
+        corr_hint_chance = 0.75
+    elif currentLoop.thisN < 160:
+        corr_hint_chance = 0.15
     
     # statement to define correct keys for trial
     if prob_bg[ currentLoop.thisN ]:
@@ -333,7 +332,7 @@ for thisTrial in trials:
             hint_pos = left_pos
     R_text.setText(trial_r_val)
     L_text.setText(trial_l_val)
-    polygon.setPos(left_pos)
+    polygon.setPos(hint_pos)
     key_resp.keys = []
     key_resp.rt = []
     _key_resp_allKeys = []
@@ -456,7 +455,7 @@ for thisTrial in trials:
             textFeedback = fdbck_winText # Display positive feedback text
         else:
             imageVariable = imagePath + "Lgreenlose.bmp"# Otherwise show the empty chest
-            textFeedback = fdbckloseText
+            textFeedback = fdbck_loseText
     elif key_resp.keys == 'right': # Same as above but on the other side 
         if key_resp.corr:
             imageVariable = imagePath + "Rbluewin.bmp" # The predefined image path is added to the file name
@@ -673,7 +672,7 @@ for thisTrial in trials:
     trials.addData('feedbackFill.stopped', feedbackFill.tStopRefresh)
     thisExp.nextEntry()
     
-# completed 2 repeats of 'trials'
+# completed 1 repeats of 'trials'
 
 
 # Flip one final time so any remaining win.callOnFlip() 
