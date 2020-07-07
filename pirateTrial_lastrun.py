@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on July 07, 2020, at 15:14
+    on July 07, 2020, at 17:38
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -203,6 +203,20 @@ fdbck_text = visual.TextStim(win=win, name='fdbck_text',
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-3.0);
+feedbackFrame = visual.Rect(
+    win=win, name='feedbackFrame',
+    width=(0.35, 0.55)[0], height=(0.35, 0.55)[1],
+    ori=0, pos=(0, -0.2),
+    lineWidth=1, lineColor=[1.000,1.000,-1.000], lineColorSpace='rgb',
+    fillColor=None, fillColorSpace='rgb',
+    opacity=1, depth=-4.0, interpolate=True)
+feedbackFill = visual.Rect(
+    win=win, name='feedbackFill',
+    width=(0.35, 0.55)[0], height=(0.35, 0.55)[1],
+    ori=0, pos=(0, -0.2),
+    lineWidth=1, lineColor=None, lineColorSpace='rgb',
+    fillColor=[1.000,1.000,-1.000], fillColorSpace='rgb',
+    opacity=1, depth=-5.0, interpolate=True)
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -499,7 +513,7 @@ for thisTrial in trials:
     L_text_2.setText(trial_l_val)
     fdbck_text.setText(textFeedback)
     # keep track of which components have finished
-    feedbackComponents = [image, R_text_2, L_text_2, fdbck_text]
+    feedbackComponents = [image, R_text_2, L_text_2, fdbck_text, feedbackFrame, feedbackFill]
     for thisComponent in feedbackComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -590,6 +604,40 @@ for thisTrial in trials:
                 win.timeOnFlip(fdbck_text, 'tStopRefresh')  # time at next scr refresh
                 fdbck_text.setAutoDraw(False)
         
+        # *feedbackFrame* updates
+        if feedbackFrame.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            feedbackFrame.frameNStart = frameN  # exact frame index
+            feedbackFrame.tStart = t  # local t and not account for scr refresh
+            feedbackFrame.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(feedbackFrame, 'tStartRefresh')  # time at next scr refresh
+            feedbackFrame.setAutoDraw(True)
+        if feedbackFrame.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > feedbackFrame.tStartRefresh + 5.0-frameTolerance:
+                # keep track of stop time/frame for later
+                feedbackFrame.tStop = t  # not accounting for scr refresh
+                feedbackFrame.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(feedbackFrame, 'tStopRefresh')  # time at next scr refresh
+                feedbackFrame.setAutoDraw(False)
+        
+        # *feedbackFill* updates
+        if feedbackFill.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            feedbackFill.frameNStart = frameN  # exact frame index
+            feedbackFill.tStart = t  # local t and not account for scr refresh
+            feedbackFill.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(feedbackFill, 'tStartRefresh')  # time at next scr refresh
+            feedbackFill.setAutoDraw(True)
+        if feedbackFill.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > feedbackFill.tStartRefresh + 5.0-frameTolerance:
+                # keep track of stop time/frame for later
+                feedbackFill.tStop = t  # not accounting for scr refresh
+                feedbackFill.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(feedbackFill, 'tStopRefresh')  # time at next scr refresh
+                feedbackFill.setAutoDraw(False)
+        
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
             core.quit()
@@ -619,6 +667,10 @@ for thisTrial in trials:
     trials.addData('L_text_2.stopped', L_text_2.tStopRefresh)
     trials.addData('fdbck_text.started', fdbck_text.tStartRefresh)
     trials.addData('fdbck_text.stopped', fdbck_text.tStopRefresh)
+    trials.addData('feedbackFrame.started', feedbackFrame.tStartRefresh)
+    trials.addData('feedbackFrame.stopped', feedbackFrame.tStopRefresh)
+    trials.addData('feedbackFill.started', feedbackFill.tStartRefresh)
+    trials.addData('feedbackFill.stopped', feedbackFill.tStopRefresh)
     thisExp.nextEntry()
     
 # completed 2 repeats of 'trials'
