@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on July 14, 2020, at 11:36
+    on July 21, 2020, at 11:38
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -90,6 +90,8 @@ imageVariable = None # Need this to initialise the feedback image display
 textFeedback = None # Need this to initialise the text feedback display
 fdbck_winText = "Well done you chose correctly!"
 fdbck_loseText = "better luck next time!"
+#soundFeedback = None # Need this to initialise the sound feedback display
+
 
 num_trial = 120 # Number of trials in the experiment
 zero = [0] #create lists 
@@ -136,11 +138,6 @@ for t in range(0,num_trial):
     r_val.append(val)
     l_val.append(100-val)
 
-player_score = 0
-pirate_level = 0
-level_limit = 460
-leveled_up = False
-
 background = visual.ImageStim(
     win=win,
     name='background', 
@@ -171,6 +168,38 @@ polygon = visual.Rect(
     fillColor=None, fillColorSpace='rgb',
     opacity=1, depth=-4.0, interpolate=True)
 key_resp = keyboard.Keyboard()
+
+# Initialize components for Routine "selection"
+selectionClock = core.Clock()
+background_2 = visual.ImageStim(
+    win=win,
+    name='background_2', 
+    image='stimuli/piratetask.bmp', mask=None,
+    ori=0, pos=(0, 0), size=(2, 2),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=0.0)
+r_text = visual.TextStim(win=win, name='r_text',
+    text='default text',
+    font='Arial',
+    pos=(0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-1.0);
+l_text = visual.TextStim(win=win, name='l_text',
+    text='default text',
+    font='Arial',
+    pos=(-0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
+select_frame = visual.Rect(
+    win=win, name='select_frame',
+    width=(0.4, 0.2)[0], height=(0.4, 0.2)[1],
+    ori=0, pos=[0,0],
+    lineWidth=4, lineColor=[1,1,1], lineColorSpace='rgb',
+    fillColor=None, fillColorSpace='rgb',
+    opacity=1, depth=-3.0, interpolate=True)
 
 # Initialize components for Routine "feedback"
 feedbackClock = core.Clock()
@@ -205,18 +234,57 @@ fdbck_text = visual.TextStim(win=win, name='fdbck_text',
     depth=-3.0);
 feedbackFrame = visual.Rect(
     win=win, name='feedbackFrame',
-    width=(0.35, 0.55)[0], height=(0.35, 0.55)[1],
+    width=(0.4, 0.6)[0], height=(0.4, 0.6)[1],
     ori=0, pos=(0, -0.15),
     lineWidth=1, lineColor=[1.000,1.000,-1.000], lineColorSpace='rgb',
     fillColor=None, fillColorSpace='rgb',
     opacity=1, depth=-4.0, interpolate=True)
 feedbackFill = visual.Rect(
     win=win, name='feedbackFill',
-    width=(0.35, 0.55)[0], height=(0.35, 0.55)[1],
-    ori=0, pos=(0, -1.5),
+    width=[1.0, 1.0][0], height=[1.0, 1.0][1],
+    ori=0, pos=[0,0],
     lineWidth=1, lineColor=None, lineColorSpace='rgb',
     fillColor=[1.000,1.000,-1.000], fillColorSpace='rgb',
     opacity=1, depth=-5.0, interpolate=True)
+player_score = 0
+pirate_level = 0
+level_limit = 460
+leveled_up = False
+
+# The maximum height of the bar
+# (should correspond to the height value in the feedbackFrame)
+max_height = 0.6
+
+# Proportion of the bar's height that corresponds to a single point
+height_for_one_point = max_height/level_limit
+
+# Set initial values for bar
+height = player_score * height_for_one_point
+width = 0.4
+
+# This should start as the lower bound of the feedbackFrame
+# i.e. if feedbackFrame height = 0.2 and y position = 0 then
+# y_pos = -0.1 (y position - height/2)
+y_pos = -0.45
+x_pos = 0
+
+# Timings for bar (these are completely arbritary free free to change as you see fit)
+rect_start = 0
+move_start = 1
+rect_dur = 5
+end_idle = 0.5
+move_dur = rect_dur - (move_start + end_idle)
+
+# Two options for final version:
+# 1. Set duration, in which case the RoCs will be scaled by the score (variable speed/fixed duration)
+# 2. Set rate of change, in which case the duration will be scaled by score (variable duration/ fixed speed)
+
+# Currently set up as 1.
+
+# Put variables into lists
+rect_dims = [width, height]
+rect_pos = [x_pos, y_pos]
+
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -461,23 +529,29 @@ for thisTrial in trials:
     
     # Ensure that the object you are accessing ('key_resp') is the named exactly the same here as in the builder
     if key_resp.keys == 'left': # Start by checking which key was pressed
+        select_pos = right_pos
         if key_resp.corr: # Then see if the response was correct
             imageVariable = imagePath + "Lgreenwin.bmp" # If yes then display the treasure
             score_update = trial_l_val # Add the value displayed to the players score
             textFeedback = fdbck_winText # Display positive feedback text
+            soundFeedback = "stimuli/coins-drop-1.wav"
         else:
             imageVariable = imagePath + "Lgreenlose.bmp"# Otherwise show the empty chest
             score_update = 0
             textFeedback = fdbck_loseText
+            soundFeedback = None
     elif key_resp.keys == 'right': # Same as above but on the other side 
+        select_pos = left_pos
         if key_resp.corr:
             imageVariable = imagePath + "Rbluewin.bmp" # The predefined image path is added to the file name
             score_update = trial_r_val # Add the value displayed to the players score
             textFeedback = fdbck_winText # Display positive feedback text
+            soundFeedback = "stimuli/coins-drop-1.wav"
         else:
             imageVariable = imagePath + "Rbluelose.bmp"
             score_update = 0
             textFeedback = fdbck_loseText
+            soundFeedback = None
     
     old_player_score = player_score
     new_player_score = player_score + score_update
@@ -523,14 +597,163 @@ for thisTrial in trials:
     # the Routine "studyTrial" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
+    # ------Prepare to start Routine "selection"-------
+    continueRoutine = True
+    routineTimer.add(2.000000)
+    # update component parameters for each repeat
+    r_text.setText(trial_r_val)
+    l_text.setText(trial_l_val)
+    select_frame.setPos(select_pos)
+    # keep track of which components have finished
+    selectionComponents = [background_2, r_text, l_text, select_frame]
+    for thisComponent in selectionComponents:
+        thisComponent.tStart = None
+        thisComponent.tStop = None
+        thisComponent.tStartRefresh = None
+        thisComponent.tStopRefresh = None
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    # reset timers
+    t = 0
+    _timeToFirstFrame = win.getFutureFlipTime(clock="now")
+    selectionClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+    frameN = -1
+    
+    # -------Run Routine "selection"-------
+    while continueRoutine and routineTimer.getTime() > 0:
+        # get current time
+        t = selectionClock.getTime()
+        tThisFlip = win.getFutureFlipTime(clock=selectionClock)
+        tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        # *background_2* updates
+        if background_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            background_2.frameNStart = frameN  # exact frame index
+            background_2.tStart = t  # local t and not account for scr refresh
+            background_2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(background_2, 'tStartRefresh')  # time at next scr refresh
+            background_2.setAutoDraw(True)
+        if background_2.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > background_2.tStartRefresh + 2.0-frameTolerance:
+                # keep track of stop time/frame for later
+                background_2.tStop = t  # not accounting for scr refresh
+                background_2.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(background_2, 'tStopRefresh')  # time at next scr refresh
+                background_2.setAutoDraw(False)
+        
+        # *r_text* updates
+        if r_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            r_text.frameNStart = frameN  # exact frame index
+            r_text.tStart = t  # local t and not account for scr refresh
+            r_text.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(r_text, 'tStartRefresh')  # time at next scr refresh
+            r_text.setAutoDraw(True)
+        if r_text.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > r_text.tStartRefresh + 2.0-frameTolerance:
+                # keep track of stop time/frame for later
+                r_text.tStop = t  # not accounting for scr refresh
+                r_text.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(r_text, 'tStopRefresh')  # time at next scr refresh
+                r_text.setAutoDraw(False)
+        
+        # *l_text* updates
+        if l_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            l_text.frameNStart = frameN  # exact frame index
+            l_text.tStart = t  # local t and not account for scr refresh
+            l_text.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(l_text, 'tStartRefresh')  # time at next scr refresh
+            l_text.setAutoDraw(True)
+        if l_text.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > l_text.tStartRefresh + 2.0-frameTolerance:
+                # keep track of stop time/frame for later
+                l_text.tStop = t  # not accounting for scr refresh
+                l_text.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(l_text, 'tStopRefresh')  # time at next scr refresh
+                l_text.setAutoDraw(False)
+        
+        # *select_frame* updates
+        if select_frame.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
+            # keep track of start time/frame for later
+            select_frame.frameNStart = frameN  # exact frame index
+            select_frame.tStart = t  # local t and not account for scr refresh
+            select_frame.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(select_frame, 'tStartRefresh')  # time at next scr refresh
+            select_frame.setAutoDraw(True)
+        if select_frame.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > select_frame.tStartRefresh + 2-frameTolerance:
+                # keep track of stop time/frame for later
+                select_frame.tStop = t  # not accounting for scr refresh
+                select_frame.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(select_frame, 'tStopRefresh')  # time at next scr refresh
+                select_frame.setAutoDraw(False)
+        
+        # check for quit (typically the Esc key)
+        if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in selectionComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "selection"-------
+    for thisComponent in selectionComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    trials.addData('background_2.started', background_2.tStartRefresh)
+    trials.addData('background_2.stopped', background_2.tStopRefresh)
+    trials.addData('r_text.started', r_text.tStartRefresh)
+    trials.addData('r_text.stopped', r_text.tStopRefresh)
+    trials.addData('l_text.started', l_text.tStartRefresh)
+    trials.addData('l_text.stopped', l_text.tStopRefresh)
+    trials.addData('select_frame.started', select_frame.tStartRefresh)
+    trials.addData('select_frame.stopped', select_frame.tStopRefresh)
+    
     # ------Prepare to start Routine "feedback"-------
     continueRoutine = True
-    routineTimer.add(5.000000)
     # update component parameters for each repeat
     image.setImage(imageVariable)
     R_text_2.setText(trial_r_val)
     L_text_2.setText(trial_l_val)
     fdbck_text.setText(textFeedback)
+    
+    initial_height = old_player_score * height_for_one_point
+    final_height = new_player_score * height_for_one_point
+    
+    total_amount_to_move = final_height - initial_height
+    
+    frame_duration = move_dur * 60
+    
+    height_RoC = total_amount_to_move/frame_duration
+    yPos_RoC = height_RoC/2
+    
+    
+    
+    # You might not need this here if you implement the resetting bar in the feedback routine
+    # But you will want to transplant some of this code to it
+    # (e.g. increasing the player level, subtracting the level limit)
+    if player_score > level_limit:
+        pirate_level += 1
+        leveled_up = True
+        
+        player_score -= level_limit
     # keep track of which components have finished
     feedbackComponents = [image, R_text_2, L_text_2, fdbck_text, feedbackFrame, feedbackFill]
     for thisComponent in feedbackComponents:
@@ -547,7 +770,7 @@ for thisTrial in trials:
     frameN = -1
     
     # -------Run Routine "feedback"-------
-    while continueRoutine and routineTimer.getTime() > 0:
+    while continueRoutine:
         # get current time
         t = feedbackClock.getTime()
         tThisFlip = win.getFutureFlipTime(clock=feedbackClock)
@@ -641,7 +864,7 @@ for thisTrial in trials:
                 feedbackFrame.setAutoDraw(False)
         
         # *feedbackFill* updates
-        if feedbackFill.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        if feedbackFill.status == NOT_STARTED and tThisFlip >= rect_start-frameTolerance:
             # keep track of start time/frame for later
             feedbackFill.frameNStart = frameN  # exact frame index
             feedbackFill.tStart = t  # local t and not account for scr refresh
@@ -650,12 +873,30 @@ for thisTrial in trials:
             feedbackFill.setAutoDraw(True)
         if feedbackFill.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > feedbackFill.tStartRefresh + 5.0-frameTolerance:
+            if tThisFlipGlobal > feedbackFill.tStartRefresh + rect_dur-frameTolerance:
                 # keep track of stop time/frame for later
                 feedbackFill.tStop = t  # not accounting for scr refresh
                 feedbackFill.frameNStop = frameN  # exact frame index
                 win.timeOnFlip(feedbackFill, 'tStopRefresh')  # time at next scr refresh
                 feedbackFill.setAutoDraw(False)
+        if feedbackFill.status == STARTED:  # only update if drawing
+            feedbackFill.setPos(rect_pos, log=False)
+            feedbackFill.setSize(rect_dims, log=False)
+        # Only change once the bars have appreared 
+        if feedbackFill.status == STARTED and t > move_start and t < (rect_dur - end_idle):
+            # Only update the height/y properties (index 1 for both)
+            rect_dims[1] += height_RoC
+            rect_pos[1] += yPos_RoC
+        
+            # This calculates where the top of the bar is:
+            # Position of bar + half the height (as position is always measured from middle)
+            bar_top = rect_pos[1] + rect_dims[1]/2
+        
+            # If bar goes beyond upper limit of frame then reset it
+        #    if bar_top > 0.05:
+        #       rect_dims[1] = height
+        #       rect_pos[1] = y_pos
+        
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -690,6 +931,8 @@ for thisTrial in trials:
     trials.addData('feedbackFrame.stopped', feedbackFrame.tStopRefresh)
     trials.addData('feedbackFill.started', feedbackFill.tStartRefresh)
     trials.addData('feedbackFill.stopped', feedbackFill.tStopRefresh)
+    # the Routine "feedback" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     thisExp.nextEntry()
     
 # completed 1 repeats of 'trials'
