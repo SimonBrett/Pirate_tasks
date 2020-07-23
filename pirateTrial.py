@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on July 21, 2020, at 11:38
+    on July 23, 2020, at 14:15
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\Daniel\\Documents\\GitHub\\Pirate_tasks\\pirateTrial.py',
+    originPath='C:\\Users\\tobiiuser\\Documents\\GitHub\\Pirate_tasks\\pirateTrial.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -89,7 +89,7 @@ imagePath = "stimuli/" # This establishes where the stimuli are stored
 imageVariable = None # Need this to initialise the feedback image display
 textFeedback = None # Need this to initialise the text feedback display
 fdbck_winText = "Well done you chose correctly!"
-fdbck_loseText = "better luck next time!"
+fdbck_loseText = "Better luck next time!"
 #soundFeedback = None # Need this to initialise the sound feedback display
 
 
@@ -134,7 +134,7 @@ l_val = []
 
 #create reward values
 for t in range(0,num_trial):
-    val = rand.randint(1,101)
+    val = rand.randint(1,100)
     r_val.append(val)
     l_val.append(100-val)
 
@@ -160,20 +160,35 @@ L_text = visual.TextStim(win=win, name='L_text',
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-3.0);
-polygon = visual.Rect(
-    win=win, name='polygon',
-    width=(0.3, 0.3)[0], height=(0.3, 0.3)[1],
-    ori=0, pos=[0,0],
-    lineWidth=8, lineColor=[1.000,1.000,-1.000], lineColorSpace='rgb',
-    fillColor=None, fillColorSpace='rgb',
-    opacity=1, depth=-4.0, interpolate=True)
 key_resp = keyboard.Keyboard()
+hint = visual.ImageStim(
+    win=win,
+    name='hint', 
+    image='sin', mask=None,
+    ori=0, pos=(0, 0), size=(2, 2),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-5.0)
+R_text2 = visual.TextStim(win=win, name='R_text2',
+    text='default text',
+    font='Arial',
+    pos=(0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-6.0);
+L_text2 = visual.TextStim(win=win, name='L_text2',
+    text='default text',
+    font='Arial',
+    pos=(-0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-7.0);
 
 # Initialize components for Routine "selection"
 selectionClock = core.Clock()
-background_2 = visual.ImageStim(
+background2 = visual.ImageStim(
     win=win,
-    name='background_2', 
+    name='background2', 
     image='stimuli/piratetask.bmp', mask=None,
     ori=0, pos=(0, 0), size=(2, 2),
     color=[1,1,1], colorSpace='rgb', opacity=1,
@@ -195,9 +210,9 @@ l_text = visual.TextStim(win=win, name='l_text',
     depth=-2.0);
 select_frame = visual.Rect(
     win=win, name='select_frame',
-    width=(0.4, 0.2)[0], height=(0.4, 0.2)[1],
+    width=(0.25, 0.25)[0], height=(0.25, 0.25)[1],
     ori=0, pos=[0,0],
-    lineWidth=4, lineColor=[1,1,1], lineColorSpace='rgb',
+    lineWidth=8, lineColor='yellow', lineColorSpace='rgb',
     fillColor=None, fillColorSpace='rgb',
     opacity=1, depth=-3.0, interpolate=True)
 
@@ -268,9 +283,9 @@ width = 0.4
 y_pos = -0.45
 x_pos = 0
 
-# Timings for bar (these are completely arbritary free free to change as you see fit)
+# Timings for bar 
 rect_start = 0
-move_start = 1
+move_start = 2
 rect_dur = 5
 end_idle = 0.5
 move_dur = rect_dur - (move_start + end_idle)
@@ -376,8 +391,8 @@ for thisTrial in trials:
     resp_start = hint_start + rand.uniform(3, 7)
     
     # Set up hint positions
-    left_pos = (0.5, -0.3)
-    right_pos = (-0.5, -0.3)
+    left_pos = (-0.52, -0.32)
+    right_pos = (0.52, -0.32)
     
     # Pre-generated array way of changing hint correct probability
     #corr_hint_chance = hint_prob[ currentLoop.thisN ]
@@ -400,24 +415,26 @@ for thisTrial in trials:
     if prob_bg[ currentLoop.thisN ]:
         correct_key = 'left'
         # Determine whether the hint will be show on correct or incorrect side
-        if hint_prob >= corr_hint_chance:
-            hint_pos = left_pos
+        if hint_prob <= corr_hint_chance:
+           imageVariable = imagePath + "Lgreenhint.bmp"
         else:
-            hint_pos = right_pos
+            imageVariable = imagePath + "Rbluehint.bmp"
     else:
         correct_key = 'right'
-        if hint_prob >= corr_hint_chance:
-            hint_pos = right_pos
+        if hint_prob <= corr_hint_chance:
+            imageVariable = imagePath + "Rbluehint.bmp"
         else:
-            hint_pos = left_pos
+            imageVariable = imagePath + "Lgreenhint.bmp"
     R_text.setText(trial_r_val)
     L_text.setText(trial_l_val)
-    polygon.setPos(hint_pos)
     key_resp.keys = []
     key_resp.rt = []
     _key_resp_allKeys = []
+    hint.setImage(imageVariable)
+    R_text2.setText(trial_r_val)
+    L_text2.setText(trial_l_val)
     # keep track of which components have finished
-    studyTrialComponents = [background, R_text, L_text, polygon, key_resp]
+    studyTrialComponents = [background, R_text, L_text, key_resp, hint, R_text2, L_text2]
     for thisComponent in studyTrialComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -467,15 +484,6 @@ for thisTrial in trials:
             win.timeOnFlip(L_text, 'tStartRefresh')  # time at next scr refresh
             L_text.setAutoDraw(True)
         
-        # *polygon* updates
-        if polygon.status == NOT_STARTED and tThisFlip >= hint_start-frameTolerance:
-            # keep track of start time/frame for later
-            polygon.frameNStart = frameN  # exact frame index
-            polygon.tStart = t  # local t and not account for scr refresh
-            polygon.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(polygon, 'tStartRefresh')  # time at next scr refresh
-            polygon.setAutoDraw(True)
-        
         # *key_resp* updates
         waitOnFlip = False
         if key_resp.status == NOT_STARTED and tThisFlip >= resp_start-frameTolerance:
@@ -503,6 +511,33 @@ for thisTrial in trials:
                 # a response ends the routine
                 continueRoutine = False
         
+        # *hint* updates
+        if hint.status == NOT_STARTED and tThisFlip >= hint_start-frameTolerance:
+            # keep track of start time/frame for later
+            hint.frameNStart = frameN  # exact frame index
+            hint.tStart = t  # local t and not account for scr refresh
+            hint.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(hint, 'tStartRefresh')  # time at next scr refresh
+            hint.setAutoDraw(True)
+        
+        # *R_text2* updates
+        if R_text2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            R_text2.frameNStart = frameN  # exact frame index
+            R_text2.tStart = t  # local t and not account for scr refresh
+            R_text2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(R_text2, 'tStartRefresh')  # time at next scr refresh
+            R_text2.setAutoDraw(True)
+        
+        # *L_text2* updates
+        if L_text2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            L_text2.frameNStart = frameN  # exact frame index
+            L_text2.tStart = t  # local t and not account for scr refresh
+            L_text2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(L_text2, 'tStartRefresh')  # time at next scr refresh
+            L_text2.setAutoDraw(True)
+        
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
             core.quit()
@@ -529,7 +564,7 @@ for thisTrial in trials:
     
     # Ensure that the object you are accessing ('key_resp') is the named exactly the same here as in the builder
     if key_resp.keys == 'left': # Start by checking which key was pressed
-        select_pos = right_pos
+        select_pos = left_pos
         if key_resp.corr: # Then see if the response was correct
             imageVariable = imagePath + "Lgreenwin.bmp" # If yes then display the treasure
             score_update = trial_l_val # Add the value displayed to the players score
@@ -540,8 +575,8 @@ for thisTrial in trials:
             score_update = 0
             textFeedback = fdbck_loseText
             soundFeedback = None
-    elif key_resp.keys == 'right': # Same as above but on the other side 
-        select_pos = left_pos
+    elif key_resp.keys == 'right':# Same as above but on the other side 
+        select_pos = right_pos
         if key_resp.corr:
             imageVariable = imagePath + "Rbluewin.bmp" # The predefined image path is added to the file name
             score_update = trial_r_val # Add the value displayed to the players score
@@ -577,8 +612,6 @@ for thisTrial in trials:
     trials.addData('R_text.stopped', R_text.tStopRefresh)
     trials.addData('L_text.started', L_text.tStartRefresh)
     trials.addData('L_text.stopped', L_text.tStopRefresh)
-    trials.addData('polygon.started', polygon.tStartRefresh)
-    trials.addData('polygon.stopped', polygon.tStopRefresh)
     # check responses
     if key_resp.keys in ['', [], None]:  # No response was made
         key_resp.keys = None
@@ -594,18 +627,30 @@ for thisTrial in trials:
         trials.addData('key_resp.rt', key_resp.rt)
     trials.addData('key_resp.started', key_resp.tStartRefresh)
     trials.addData('key_resp.stopped', key_resp.tStopRefresh)
+    trials.addData('hint.started', hint.tStartRefresh)
+    trials.addData('hint.stopped', hint.tStopRefresh)
+    trials.addData('R_text2.started', R_text2.tStartRefresh)
+    trials.addData('R_text2.stopped', R_text2.tStopRefresh)
+    trials.addData('L_text2.started', L_text2.tStartRefresh)
+    trials.addData('L_text2.stopped', L_text2.tStopRefresh)
+    
+    # added important data to save
+    trials.addData('trial_r_val', trial_r_val)
+    trials.addData('trial_l_val', trial_l_val)
+    trials.addData('hint_prob', hint_prob) # Needs to be edited, want to save whether the hint prob is correct or incorrect on each trial
+    trials.addData('prob_bg', prob_bg) # Needs to be edited, want to save whether blue or green is correct or incorrect on each trial
+    
     # the Routine "studyTrial" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
     # ------Prepare to start Routine "selection"-------
     continueRoutine = True
-    routineTimer.add(2.000000)
     # update component parameters for each repeat
     r_text.setText(trial_r_val)
     l_text.setText(trial_l_val)
     select_frame.setPos(select_pos)
     # keep track of which components have finished
-    selectionComponents = [background_2, r_text, l_text, select_frame]
+    selectionComponents = [background2, r_text, l_text, select_frame]
     for thisComponent in selectionComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -620,7 +665,7 @@ for thisTrial in trials:
     frameN = -1
     
     # -------Run Routine "selection"-------
-    while continueRoutine and routineTimer.getTime() > 0:
+    while continueRoutine:
         # get current time
         t = selectionClock.getTime()
         tThisFlip = win.getFutureFlipTime(clock=selectionClock)
@@ -628,22 +673,22 @@ for thisTrial in trials:
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
         
-        # *background_2* updates
-        if background_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # *background2* updates
+        if background2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            background_2.frameNStart = frameN  # exact frame index
-            background_2.tStart = t  # local t and not account for scr refresh
-            background_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(background_2, 'tStartRefresh')  # time at next scr refresh
-            background_2.setAutoDraw(True)
-        if background_2.status == STARTED:
+            background2.frameNStart = frameN  # exact frame index
+            background2.tStart = t  # local t and not account for scr refresh
+            background2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(background2, 'tStartRefresh')  # time at next scr refresh
+            background2.setAutoDraw(True)
+        if background2.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > background_2.tStartRefresh + 2.0-frameTolerance:
+            if tThisFlipGlobal > background2.tStartRefresh + hint_start-frameTolerance:
                 # keep track of stop time/frame for later
-                background_2.tStop = t  # not accounting for scr refresh
-                background_2.frameNStop = frameN  # exact frame index
-                win.timeOnFlip(background_2, 'tStopRefresh')  # time at next scr refresh
-                background_2.setAutoDraw(False)
+                background2.tStop = t  # not accounting for scr refresh
+                background2.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(background2, 'tStopRefresh')  # time at next scr refresh
+                background2.setAutoDraw(False)
         
         # *r_text* updates
         if r_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -655,7 +700,7 @@ for thisTrial in trials:
             r_text.setAutoDraw(True)
         if r_text.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > r_text.tStartRefresh + 2.0-frameTolerance:
+            if tThisFlipGlobal > r_text.tStartRefresh + hint_start-frameTolerance:
                 # keep track of stop time/frame for later
                 r_text.tStop = t  # not accounting for scr refresh
                 r_text.frameNStop = frameN  # exact frame index
@@ -672,7 +717,7 @@ for thisTrial in trials:
             l_text.setAutoDraw(True)
         if l_text.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > l_text.tStartRefresh + 2.0-frameTolerance:
+            if tThisFlipGlobal > l_text.tStartRefresh + hint_start-frameTolerance:
                 # keep track of stop time/frame for later
                 l_text.tStop = t  # not accounting for scr refresh
                 l_text.frameNStop = frameN  # exact frame index
@@ -689,7 +734,7 @@ for thisTrial in trials:
             select_frame.setAutoDraw(True)
         if select_frame.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > select_frame.tStartRefresh + 2-frameTolerance:
+            if tThisFlipGlobal > select_frame.tStartRefresh + hint_start-frameTolerance:
                 # keep track of stop time/frame for later
                 select_frame.tStop = t  # not accounting for scr refresh
                 select_frame.frameNStop = frameN  # exact frame index
@@ -717,14 +762,16 @@ for thisTrial in trials:
     for thisComponent in selectionComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    trials.addData('background_2.started', background_2.tStartRefresh)
-    trials.addData('background_2.stopped', background_2.tStopRefresh)
+    trials.addData('background2.started', background2.tStartRefresh)
+    trials.addData('background2.stopped', background2.tStopRefresh)
     trials.addData('r_text.started', r_text.tStartRefresh)
     trials.addData('r_text.stopped', r_text.tStopRefresh)
     trials.addData('l_text.started', l_text.tStartRefresh)
     trials.addData('l_text.stopped', l_text.tStopRefresh)
     trials.addData('select_frame.started', select_frame.tStartRefresh)
     trials.addData('select_frame.stopped', select_frame.tStopRefresh)
+    # the Routine "selection" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # ------Prepare to start Routine "feedback"-------
     continueRoutine = True
@@ -734,9 +781,11 @@ for thisTrial in trials:
     L_text_2.setText(trial_l_val)
     fdbck_text.setText(textFeedback)
     
+    # Calculate the initial and final height based on the score variables
     initial_height = old_player_score * height_for_one_point
     final_height = new_player_score * height_for_one_point
     
+    # Calculate the amount of movement
     total_amount_to_move = final_height - initial_height
     
     frame_duration = move_dur * 60
