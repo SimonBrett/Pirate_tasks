@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on July 23, 2020, at 14:15
+    on July 29, 2020, at 16:45
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -146,21 +146,6 @@ background = visual.ImageStim(
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-1.0)
-R_text = visual.TextStim(win=win, name='R_text',
-    text='default text',
-    font='Arial',
-    pos=(0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
-    color='black', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-2.0);
-L_text = visual.TextStim(win=win, name='L_text',
-    text='default text',
-    font='Arial',
-    pos=(-0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
-    color='black', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-3.0);
-key_resp = keyboard.Keyboard()
 hint = visual.ImageStim(
     win=win,
     name='hint', 
@@ -168,21 +153,22 @@ hint = visual.ImageStim(
     ori=0, pos=(0, 0), size=(2, 2),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
-    texRes=128, interpolate=True, depth=-5.0)
-R_text2 = visual.TextStim(win=win, name='R_text2',
+    texRes=128, interpolate=True, depth=-2.0)
+R_text = visual.TextStim(win=win, name='R_text',
     text='default text',
     font='Arial',
     pos=(0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
-    depth=-6.0);
-L_text2 = visual.TextStim(win=win, name='L_text2',
+    depth=-3.0);
+L_text = visual.TextStim(win=win, name='L_text',
     text='default text',
     font='Arial',
     pos=(-0.43, -0.05), height=0.1, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
-    depth=-7.0);
+    depth=-4.0);
+key_resp = keyboard.Keyboard()
 
 # Initialize components for Routine "selection"
 selectionClock = core.Clock()
@@ -262,9 +248,9 @@ feedbackFill = visual.Rect(
     fillColor=[1.000,1.000,-1.000], fillColorSpace='rgb',
     opacity=1, depth=-5.0, interpolate=True)
 player_score = 0
-pirate_level = 0
+pirate_level = 1
 level_limit = 460
-leveled_up = False
+level_up = False
 
 # The maximum height of the bar
 # (should correspond to the height value in the feedbackFrame)
@@ -287,7 +273,7 @@ x_pos = 0
 rect_start = 0
 move_start = 2
 rect_dur = 5
-end_idle = 0.5
+end_idle = 1
 move_dur = rect_dur - (move_start + end_idle)
 
 # Two options for final version:
@@ -425,16 +411,14 @@ for thisTrial in trials:
             imageVariable = imagePath + "Rbluehint.bmp"
         else:
             imageVariable = imagePath + "Lgreenhint.bmp"
+    hint.setImage(imageVariable)
     R_text.setText(trial_r_val)
     L_text.setText(trial_l_val)
     key_resp.keys = []
     key_resp.rt = []
     _key_resp_allKeys = []
-    hint.setImage(imageVariable)
-    R_text2.setText(trial_r_val)
-    L_text2.setText(trial_l_val)
     # keep track of which components have finished
-    studyTrialComponents = [background, R_text, L_text, key_resp, hint, R_text2, L_text2]
+    studyTrialComponents = [background, hint, R_text, L_text, key_resp]
     for thisComponent in studyTrialComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -465,6 +449,15 @@ for thisTrial in trials:
             background.tStartRefresh = tThisFlipGlobal  # on global time
             win.timeOnFlip(background, 'tStartRefresh')  # time at next scr refresh
             background.setAutoDraw(True)
+        
+        # *hint* updates
+        if hint.status == NOT_STARTED and tThisFlip >= hint_start-frameTolerance:
+            # keep track of start time/frame for later
+            hint.frameNStart = frameN  # exact frame index
+            hint.tStart = t  # local t and not account for scr refresh
+            hint.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(hint, 'tStartRefresh')  # time at next scr refresh
+            hint.setAutoDraw(True)
         
         # *R_text* updates
         if R_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -510,33 +503,6 @@ for thisTrial in trials:
                     key_resp.corr = 0
                 # a response ends the routine
                 continueRoutine = False
-        
-        # *hint* updates
-        if hint.status == NOT_STARTED and tThisFlip >= hint_start-frameTolerance:
-            # keep track of start time/frame for later
-            hint.frameNStart = frameN  # exact frame index
-            hint.tStart = t  # local t and not account for scr refresh
-            hint.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(hint, 'tStartRefresh')  # time at next scr refresh
-            hint.setAutoDraw(True)
-        
-        # *R_text2* updates
-        if R_text2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            R_text2.frameNStart = frameN  # exact frame index
-            R_text2.tStart = t  # local t and not account for scr refresh
-            R_text2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(R_text2, 'tStartRefresh')  # time at next scr refresh
-            R_text2.setAutoDraw(True)
-        
-        # *L_text2* updates
-        if L_text2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            L_text2.frameNStart = frameN  # exact frame index
-            L_text2.tStart = t  # local t and not account for scr refresh
-            L_text2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(L_text2, 'tStartRefresh')  # time at next scr refresh
-            L_text2.setAutoDraw(True)
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -600,6 +566,11 @@ for thisTrial in trials:
         
         player_score -= level_limit
     
+    # Add data to the output
+     trials.addData('trial_r_val', trial_r_val)
+        trials.addData('trial_l_val', trial_l_val)
+        trials.addData('hint_prob', hint_prob[ currentLoop.thisN ]) # Needs to be edited, want to save whether the hint prob is correct or incorrect on each trial
+        trials.addData('prob_bg', prob_bg[ currentLoop.thisN ])
     
     
     # Use this to set the image in the following routine
@@ -608,6 +579,8 @@ for thisTrial in trials:
     
     trials.addData('background.started', background.tStartRefresh)
     trials.addData('background.stopped', background.tStopRefresh)
+    trials.addData('hint.started', hint.tStartRefresh)
+    trials.addData('hint.stopped', hint.tStopRefresh)
     trials.addData('R_text.started', R_text.tStartRefresh)
     trials.addData('R_text.stopped', R_text.tStopRefresh)
     trials.addData('L_text.started', L_text.tStartRefresh)
@@ -627,19 +600,6 @@ for thisTrial in trials:
         trials.addData('key_resp.rt', key_resp.rt)
     trials.addData('key_resp.started', key_resp.tStartRefresh)
     trials.addData('key_resp.stopped', key_resp.tStopRefresh)
-    trials.addData('hint.started', hint.tStartRefresh)
-    trials.addData('hint.stopped', hint.tStopRefresh)
-    trials.addData('R_text2.started', R_text2.tStartRefresh)
-    trials.addData('R_text2.stopped', R_text2.tStopRefresh)
-    trials.addData('L_text2.started', L_text2.tStartRefresh)
-    trials.addData('L_text2.stopped', L_text2.tStopRefresh)
-    
-    # added important data to save
-    trials.addData('trial_r_val', trial_r_val)
-    trials.addData('trial_l_val', trial_l_val)
-    trials.addData('hint_prob', hint_prob) # Needs to be edited, want to save whether the hint prob is correct or incorrect on each trial
-    trials.addData('prob_bg', prob_bg) # Needs to be edited, want to save whether blue or green is correct or incorrect on each trial
-    
     # the Routine "studyTrial" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
@@ -942,9 +902,19 @@ for thisTrial in trials:
             bar_top = rect_pos[1] + rect_dims[1]/2
         
             # If bar goes beyond upper limit of frame then reset it
-        #    if bar_top > 0.05:
-        #       rect_dims[1] = height
-        #       rect_pos[1] = y_pos
+            if bar_top > 0.15:
+                rect_dims[1] = height
+                rect_pos[1] = y_pos
+               
+                pirate_level += 1
+                player_score -= level_limit
+                
+                level_up = True
+                
+                #fdbck_text.setText("Congratulations, you are now level %d" % pirate_level)
+        
+        if fdbck_text.status == STARTED and t > (rect_dur - end_idle) and level_up:
+            fdbck_text.setText("Congratulations, you are now level %d" % pirate_level)
         
         
         # check for quit (typically the Esc key)
@@ -980,6 +950,8 @@ for thisTrial in trials:
     trials.addData('feedbackFrame.stopped', feedbackFrame.tStopRefresh)
     trials.addData('feedbackFill.started', feedbackFill.tStartRefresh)
     trials.addData('feedbackFill.stopped', feedbackFill.tStopRefresh)
+    level_up = False
+    
     # the Routine "feedback" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
