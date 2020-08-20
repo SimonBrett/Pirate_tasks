@@ -390,7 +390,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="player_score = 0;&amp;#10;pirate_level = 0;&amp;#10;level_limit = 460;&amp;#10;level_up = false;&amp;#10;max_height = 0.6;&amp;#10;height_for_one_point = (max_height / level_limit);&amp;#10;height = (player_score * height_for_one_point);&amp;#10;width = 0.4;&amp;#10;y_pos = (- 0.45);&amp;#10;x_pos = 0;&amp;#10;rect_start = 0;&amp;#10;move_start = 2;&amp;#10;rect_dur = 5;&amp;#10;end_idle = 1;&amp;#10;move_dur = (rect_dur - (move_start + end_idle));&amp;#10;rect_dims = [width, height];&amp;#10;rect_pos = [x_pos, y_pos];&amp;#10;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="initial_position = (old_player_score * height_for_one_point);&amp;#10;final_position = (new_player_score * height_for_one_point);&amp;#10;total_amount_to_move = (final_position - initial_position);&amp;#10;duration = 3;&amp;#10;frame_duration = (duration * 60);&amp;#10;height_RoC = (total_amount_to_move / frame_duration);&amp;#10;yPos_RoC = (height_RoC / 2);&amp;#10;if ((player_score &gt; level_limit)) {&amp;#10;    pirate_level += 1;&amp;#10;    leveled_up = true;&amp;#10;    player_score -= level_limit;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="&amp;#10;# Calculate the initial and final height based on the score variables&amp;#10;initial_height = old_player_score * height_for_one_point&amp;#10;final_height = new_player_score * height_for_one_point&amp;#10;&amp;#10;# Calculate the amount of movement&amp;#10;total_amount_to_move = final_height - initial_height&amp;#10;&amp;#10;frame_duration = move_dur * 60&amp;#10;&amp;#10;height_RoC = total_amount_to_move/frame_duration&amp;#10;yPos_RoC = height_RoC/2&amp;#10;&amp;#10;&amp;#10;&amp;#10;# You might not need this here if you implement the resetting bar in the feedback routine&amp;#10;# But you will want to transplant some of this code to it&amp;#10;# (e.g. increasing the player level, subtracting the level limit)&amp;#10;if player_score &gt; level_limit:&amp;#10;    pirate_level += 1&amp;#10;    leveled_up = True&amp;#10;    &amp;#10;    player_score -= level_limit" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="# Only change once the bars have appreared &amp;#10;if feedbackFill.status == STARTED and t &gt; move_start and t &lt; (rect_dur - end_idle):&amp;#10;    # Only update the height/y properties (index 1 for both)&amp;#10;    rect_dims[1] += height_RoC&amp;#10;    rect_pos[1] += yPos_RoC&amp;#10;&amp;#10;    # This calculates where the top of the bar is:&amp;#10;    # Position of bar + half the height (as position is always measured from middle)&amp;#10;    bar_top = rect_pos[1] + rect_dims[1]/2&amp;#10;&amp;#10;    # If bar goes beyond upper limit of frame then reset it&amp;#10;    if bar_top &gt; 0.15:&amp;#10;        rect_dims[1] = height&amp;#10;        rect_pos[1] = y_pos&amp;#10;       &amp;#10;        pirate_level += 1&amp;#10;        player_score -= level_limit&amp;#10;        &amp;#10;        level_up = True&amp;#10;        &amp;#10;        #fdbck_text.setText(&quot;Congratulations, you are now level %d&quot; % pirate_level)&amp;#10;&amp;#10;if fdbck_text.status == STARTED and t &gt; (rect_dur - end_idle) and level_up:&amp;#10;    fdbck_text.setText(&quot;Congratulations, you are now a level %d pirate&quot; % pirate_level)&amp;#10;" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="if ((((feedbackFill.status === PsychoJS.Status.STARTED) &amp;&amp; (t &gt; move_start)) &amp;&amp; (t &lt; (rect_dur - end_idle)))) {&amp;#10;    rect_dims[1] += height_RoC;&amp;#10;    rect_pos[1] += yPos_RoC;&amp;#10;    bar_top = (rect_pos[1] + (rect_dims[1] / 2));&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -422,7 +422,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="import {random as rand} from 'numpy';&amp;#10;var fdbck_loseText, fdbck_winText, imagePath, imageVariable, num_trial, one, prob_bg, textFeedback, trial_list_s, trial_list_vi, trial_list_vii, zero;&amp;#10;imagePath = &quot;stimuli/&quot;;&amp;#10;imageVariable = null;&amp;#10;textFeedback = null;&amp;#10;fdbck_winText = &quot;Well done you chose correctly!&quot;;&amp;#10;fdbck_loseText = &quot;Better luck next time!&quot;;&amp;#10;num_trial = 120;&amp;#10;zero = [0];&amp;#10;one = [1];&amp;#10;trial_list_s = ((zero * 45) + (one * 15));&amp;#10;trial_list_vi = ((zero * 16) + (one * 4));&amp;#10;trial_list_vii = ((zero * 4) + (one * 16));&amp;#10;rand.shuffle(trial_list_s);&amp;#10;rand.shuffle(trial_list_vi);&amp;#10;rand.shuffle(trial_list_vii);&amp;#10;prob_bg = (((trial_list_s + trial_list_vi) + trial_list_vii) + trial_list_vi);&amp;#10;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -550,8 +550,154 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
     </Routine>
+    <Routine name="famTrial">
+      <CodeComponent name="famTrial_code">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="trial_r_val = r_val[currentLoop.thisN];&amp;#10;trial_l_val = l_val[currentLoop.thisN];&amp;#10;hint_prob = rand.uniform({&quot;size&quot;: 1});&amp;#10;hint_start = rand.uniform(3, 7);&amp;#10;resp_start = (hint_start + rand.uniform(3, 7));&amp;#10;left_pos = [(- 0.52), (- 0.32)];&amp;#10;right_pos = [0.52, (- 0.32)];&amp;#10;if ((currentLoop.thisN &lt; 30)) {&amp;#10;    corr_hint_chance = 0.75;&amp;#10;} else {&amp;#10;    if ((currentLoop.thisN &lt; 40)) {&amp;#10;        corr_hint_chance = 0.2;&amp;#10;    } else {&amp;#10;        if ((currentLoop.thisN &lt; 50)) {&amp;#10;            corr_hint_chance = 0.8;&amp;#10;        } else {&amp;#10;            if ((currentLoop.thisN &lt; 60)) {&amp;#10;                corr_hint_chance = 0.2;&amp;#10;            } else {&amp;#10;                if ((currentLoop.thisN &lt; 70)) {&amp;#10;                    corr_hint_chance = 0.8;&amp;#10;                } else {&amp;#10;                    if ((currentLoop.thisN &lt; 120)) {&amp;#10;                        corr_hint_chance = 0.15;&amp;#10;                    }&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;if (prob_bg[currentLoop.thisN]) {&amp;#10;    correct_key = &quot;left&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    correct_key = &quot;right&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="trial_r_val = r_val[ currentLoop.thisN ]&amp;#10;trial_l_val = l_val[ currentLoop.thisN ]&amp;#10;&amp;#10;# Generate uniformly distributed random number between 0 and 1&amp;#10;hint_prob = rand.uniform(size = 1)&amp;#10;&amp;#10;# Set up hint positions&amp;#10;left_pos = (-0.52, -0.32)&amp;#10;right_pos = (0.52, -0.32)&amp;#10;&amp;#10;# Pre-generated array way of changing hint correct probability&amp;#10;#corr_hint_chance = hint_prob[ currentLoop.thisN ]&amp;#10;&amp;#10;# Multiple ifs way of changing hint correct probability&amp;#10;if currentLoop.thisN &lt; 10:&amp;#10;       corr_hint_chance = 0.8&amp;#10;&amp;#10;# statement to define correct image for trial&amp;#10;if prob_bg[ currentLoop.thisN ]:&amp;#10;    # Determine whether the hint will be show on correct or incorrect side&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;       imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;       correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 0&amp;#10;else:&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;        correct_hint = 0" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="famTrial_code" valType="code"/>
+      </CodeComponent>
+      <ImageComponent name="famBackground">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="stimuli/piratetask.bmp" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="famBackground" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(0.5, 0.5)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1.0" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </ImageComponent>
+      <ImageComponent name="famHint">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="set every repeat" val="$imageVariable" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="famHint" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(0.5, 0.5)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="3.0" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </ImageComponent>
+      <TextComponent name="famR_text">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="famR_text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="3.0" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="$trial_r_val" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <TextComponent name="famL_text">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="famL_text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="3.0" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="$trial_l_val" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="famIntro">
+      <CodeComponent name="fam_setup">
+        <Param name="Begin Experiment" updates="constant" val="#Store images and initialise feedback display&amp;#10;imagePath = &quot;stimuli/&quot; &amp;#10;imageVariable = None &amp;#10;&amp;#10;&amp;#10;#Number of familiarisation trials&amp;#10;num_trial = 10 &amp;#10;&amp;#10;# Setup blue/green win lose ratio&amp;#10;zero = [0] &amp;#10;one = [1]&amp;#10;trial_list_s = zero*8+one*2 # Blue 80% Green 20%&amp;#10;trial_list_s1 = zero*2+one*8 # Blue 20% Green 80%&amp;#10;&amp;#10;&amp;#10;from numpy import random as rand #randomise lists&amp;#10;rand.shuffle(trial_list_s)&amp;#10;rand.shuffle(trial_list_s1)&amp;#10;&amp;#10;#overall familiarisation probability (blue win 80%)&amp;#10;prob_bg = trial_list_s &amp;#10;&amp;#10;#overall familiarisation probability (green win 80%)&amp;#10;prob_gb = trial_list_s1&amp;#10;&amp;#10;# reward variables&amp;#10;r_val = []&amp;#10;l_val = []&amp;#10;&amp;#10;#create reward values&amp;#10;for t in range(0,num_trial):&amp;#10;    val = rand.randint(1,100)&amp;#10;    r_val.append(val)&amp;#10;    l_val.append(100-val)&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="import {random as rand} from 'numpy';&amp;#10;var imagePath, imageVariable, num_trial, one, prob_bg, trial_list_s, trial_list_s1, zero;&amp;#10;imagePath = &quot;stimuli/&quot;;&amp;#10;imageVariable = null;&amp;#10;num_trial = 10;&amp;#10;zero = [0];&amp;#10;one = [1];&amp;#10;trial_list_s = ((zero * 8) + (one * 2));&amp;#10;trial_list_s1 = ((zero * 2) + (one * 8));&amp;#10;rand.shuffle(trial_list_s);&amp;#10;rand.shuffle(trial_list_vi);&amp;#10;rand.shuffle(trial_list_vii);&amp;#10;prob_bg = (((trial_list_s + trial_list_vi) + trial_list_vii) + trial_list_vi);&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="fam_setup" valType="code"/>
+      </CodeComponent>
+    </Routine>
   </Routines>
   <Flow>
+    <Routine name="famIntro"/>
+    <LoopInitiator loopType="TrialHandler" name="trials_2">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('item_n', 1)]), OrderedDict([('item_n', 2)]), OrderedDict([('item_n', 3)]), OrderedDict([('item_n', 4)]), OrderedDict([('item_n', 5)]), OrderedDict([('item_n', 6)]), OrderedDict([('item_n', 7)]), OrderedDict([('item_n', 8)]), OrderedDict([('item_n', 9)]), OrderedDict([('item_n', 10)])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="famtrialList.xlsx" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="trials_2" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="famTrial"/>
+    <LoopTerminator name="trials_2"/>
     <Routine name="Intro"/>
     <LoopInitiator loopType="TrialHandler" name="trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
