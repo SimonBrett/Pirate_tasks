@@ -536,7 +536,7 @@
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="if ((fam_prob_bg[currentLoop.thisN] === &quot;1&quot;)) {&amp;#10;    if ((select_pos === left_pos)) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenwin.bmp&quot;);&amp;#10;        textFeedback = fdbck_winText;&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenlose.bmp&quot;);&amp;#10;        textFeedback = fdbck_loseText;&amp;#10;        soundFeedback = null;&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((fam_prob_bg[currentLoop.thisN] === &quot;0&quot;)) {&amp;#10;        if ((select_pos === right_pos)) {&amp;#10;            imageVariable = (imagePath + &quot;Rbluewin.bmp&quot;);&amp;#10;            textFeedback = fdbck_winText;&amp;#10;            soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;        } else {&amp;#10;            imageVariable = (imagePath + &quot;Rbluelose.bmp&quot;);&amp;#10;            textFeedback = fdbck_loseText;&amp;#10;            soundFeedback = null;&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="famTrial_code" valType="code"/>
@@ -665,7 +665,65 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
     </Routine>
-    <Routine name="ratioCheck"/>
+    <Routine name="ratioCheck">
+      <KeyboardComponent name="key_resp_2">
+        <Param name="allowedKeys" updates="constant" val="'left','right'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_2" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <TextComponent name="text">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Right to repeat&amp;#10;&amp;#10;Left to continue" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <CodeComponent name="code_2">
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="if ((key_resp_2.keys === &quot;left&quot;)) {&amp;#10;    fam_repeat.finished = 1;&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="if key_resp_2.keys == 'left':&amp;#10;    fam_repeat.finished = 1" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code_2" valType="code"/>
+      </CodeComponent>
+    </Routine>
     <Routine name="Instruct1"/>
     <Routine name="Instruct2"/>
     <Routine name="famIntro">
@@ -742,8 +800,19 @@
   </Routines>
   <Flow>
     <Routine name="Instruct1"/>
+    <LoopInitiator loopType="TrialHandler" name="fam_repeat">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="10" valType="code"/>
+      <Param name="name" updates="None" val="fam_repeat" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
     <Routine name="famIntro"/>
-    <LoopInitiator loopType="TrialHandler" name="trials_2">
+    <LoopInitiator loopType="TrialHandler" name="fam_trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('item_n', 1)]), OrderedDict([('item_n', 2)]), OrderedDict([('item_n', 3)]), OrderedDict([('item_n', 4)]), OrderedDict([('item_n', 5)]), OrderedDict([('item_n', 6)]), OrderedDict([('item_n', 7)]), OrderedDict([('item_n', 8)]), OrderedDict([('item_n', 9)]), OrderedDict([('item_n', 10)])]" valType="str"/>
       <Param name="conditionsFile" updates="None" val="famtrialList.xlsx" valType="str"/>
@@ -751,13 +820,14 @@
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
       <Param name="nReps" updates="None" val="1" valType="code"/>
-      <Param name="name" updates="None" val="trials_2" valType="code"/>
+      <Param name="name" updates="None" val="fam_trials" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <Routine name="famTrial"/>
     <Routine name="famFeedback"/>
-    <LoopTerminator name="trials_2"/>
+    <LoopTerminator name="fam_trials"/>
     <Routine name="ratioCheck"/>
+    <LoopTerminator name="fam_repeat"/>
     <Routine name="Instruct2"/>
     <Routine name="Intro"/>
     <LoopInitiator loopType="TrialHandler" name="trials">
