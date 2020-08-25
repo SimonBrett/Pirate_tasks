@@ -37,7 +37,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="r_val = [];&amp;#10;l_val = [];&amp;#10;for (var t = 0, _pj_a = num_trial; (t &lt; _pj_a); t += 1) {&amp;#10;    val = rand.randint(1, 101);&amp;#10;    r_val.append(val);&amp;#10;    l_val.append((100 - val));&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="trial_r_val = r_val[currentLoop.thisN];&amp;#10;trial_l_val = l_val[currentLoop.thisN];&amp;#10;hint_prob = rand.uniform({&quot;size&quot;: 1});&amp;#10;hint_start = rand.uniform(3, 7);&amp;#10;resp_start = (hint_start + rand.uniform(3, 7));&amp;#10;left_pos = [(- 0.52), (- 0.32)];&amp;#10;right_pos = [0.52, (- 0.32)];&amp;#10;if ((currentLoop.thisN &lt; 30)) {&amp;#10;    corr_hint_chance = 0.75;&amp;#10;} else {&amp;#10;    if ((currentLoop.thisN &lt; 40)) {&amp;#10;        corr_hint_chance = 0.2;&amp;#10;    } else {&amp;#10;        if ((currentLoop.thisN &lt; 50)) {&amp;#10;            corr_hint_chance = 0.8;&amp;#10;        } else {&amp;#10;            if ((currentLoop.thisN &lt; 60)) {&amp;#10;                corr_hint_chance = 0.2;&amp;#10;            } else {&amp;#10;                if ((currentLoop.thisN &lt; 70)) {&amp;#10;                    corr_hint_chance = 0.8;&amp;#10;                } else {&amp;#10;                    if ((currentLoop.thisN &lt; 120)) {&amp;#10;                        corr_hint_chance = 0.15;&amp;#10;                    }&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;if (prob_bg[currentLoop.thisN]) {&amp;#10;    correct_key = &quot;left&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    correct_key = &quot;right&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="#Assuming you have a r_val and and l_val list:&amp;#10;&amp;#10;trial_r_val = r_val[ currentLoop.thisN ]&amp;#10;trial_l_val = l_val[ currentLoop.thisN ]&amp;#10;&amp;#10;# Generate uniformly distributed random number between 0 and 1&amp;#10;hint_prob = rand.uniform(size = 1)&amp;#10;&amp;#10;# Generate start times for hint and response window&amp;#10;hint_start = rand.uniform(3, 7)&amp;#10;resp_start = hint_start + rand.uniform(3, 7)&amp;#10;&amp;#10;# Set up selection positions&amp;#10;left_pos = (-0.52, -0.32)&amp;#10;right_pos = (0.52, -0.32)&amp;#10;&amp;#10;# Pre-generated array way of changing hint correct probability&amp;#10;#corr_hint_chance = hint_prob[ currentLoop.thisN ]&amp;#10;&amp;#10;# Multiple ifs way of changing hint correct probability&amp;#10;if currentLoop.thisN &lt; 30:&amp;#10;       corr_hint_chance = 0.75&amp;#10;elif currentLoop.thisN &lt; 40:&amp;#10;        corr_hint_chance = 0.2&amp;#10;elif currentLoop.thisN &lt; 50:&amp;#10;        corr_hint_chance = 0.8&amp;#10;elif currentLoop.thisN &lt; 60:&amp;#10;        corr_hint_chance = 0.2&amp;#10;elif currentLoop.thisN &lt; 70:&amp;#10;        corr_hint_chance = 0.8&amp;#10;elif currentLoop.thisN &lt; 120:&amp;#10;        corr_hint_chance = 0.15&amp;#10;&amp;#10;# statement to define correct keys for trial&amp;#10;if prob_bg[ currentLoop.thisN ]:&amp;#10;    correct_key = 'left'&amp;#10;    # Determine whether the hint will be show on correct or incorrect side&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;       imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;       correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 0&amp;#10;else:&amp;#10;    correct_key = 'right'&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;        correct_hint = 0" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -145,31 +145,6 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
-      <PolygonComponent name="polygon">
-        <Param name="disabled" updates="None" val="True" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="fillColor" updates="constant" val="$None" valType="str"/>
-        <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
-        <Param name="lineColor" updates="constant" val="$[1.000,1.000,-1.000]" valType="str"/>
-        <Param name="lineColorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="lineWidth" updates="constant" val="8" valType="code"/>
-        <Param name="nVertices" updates="constant" val="4" valType="int"/>
-        <Param name="name" updates="None" val="polygon" valType="code"/>
-        <Param name="opacity" updates="constant" val="1" valType="code"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="set every repeat" val="$hint_pos" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="False" valType="bool"/>
-        <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.3, 0.3)" valType="code"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="$hint_start" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-      </PolygonComponent>
       <KeyboardComponent name="key_resp">
         <Param name="allowedKeys" updates="constant" val="'left','right'" valType="code"/>
         <Param name="correctAns" updates="constant" val="$correct_key" valType="str"/>
@@ -552,17 +527,17 @@
     </Routine>
     <Routine name="famTrial">
       <CodeComponent name="famTrial_code">
-        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="trial_r_val = r_val[ currentLoop.thisN ]&amp;#10;trial_l_val = l_val[ currentLoop.thisN ]&amp;#10;&amp;#10;# Generate uniformly distributed random number between 0 and 1&amp;#10;hint_prob = rand.uniform(size = 1)&amp;#10;&amp;#10;# Set up selection positions&amp;#10;left_pos = (-0.52, -0.32)&amp;#10;right_pos = (0.52, -0.32)&amp;#10;&amp;#10;# Multiple ifs way of changing hint correct probability&amp;#10;if currentLoop.thisN &lt; 10:&amp;#10;       corr_hint_chance = 0.8&amp;#10;&amp;#10;# statement to define correct image for trial&amp;#10;if fam_prob_bg[ currentLoop.thisN ]:&amp;#10;    # Determine whether the hint will be show on correct or incorrect side&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;       imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;       correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 0&amp;#10;        else:&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;        correct_hint = 0&amp;#10;        &amp;#10;        &amp;#10;# selection code&amp;#10;if fam_prob_bg[ currentLoop.thisN ]:&amp;#10;    select_pos = left_pos&amp;#10;    else:&amp;#10;    select_pos = right_pos" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="# Set up selection positions&amp;#10;left_pos = (-0.52, -0.32)&amp;#10;right_pos = (0.52, -0.32)" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="left_pos = [(- 0.52), (- 0.32)];&amp;#10;right_pos = [0.52, (- 0.32)];&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="trial_r_val = r_val[currentLoop.thisN];&amp;#10;trial_l_val = l_val[currentLoop.thisN];&amp;#10;hint_prob = rand.uniform({&quot;size&quot;: 1});&amp;#10;select_prob = rand.uniform({&quot;size&quot;: 1});&amp;#10;if ((currentLoop.thisN &lt; 10)) {&amp;#10;    corr_hint_chance = 0.8;&amp;#10;}&amp;#10;corr_select_chance = 0.8;&amp;#10;if (fam_prob_bg[currentLoop.thisN]) {&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;    if ((select_prob &lt;= corr_select_chance)) {&amp;#10;        select_pos = left_pos;&amp;#10;        imageFeedback = (imagePath + &quot;Lgreenwin.bmp&quot;);&amp;#10;        textFeedback = fdbck_winText;&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;    } else {&amp;#10;        select_pos = right_pos;&amp;#10;        imageFeedback = (imagePath + &quot;Rbluelose.bmp&quot;);&amp;#10;        textFeedback = fdbck_loseText;&amp;#10;        soundFeedback = null;&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;    if ((select_prob &lt;= corr_select_chance)) {&amp;#10;        select_pos = right_pos;&amp;#10;        imageFeedback = (imagePath + &quot;Rbluewin.bmp&quot;);&amp;#10;        textFeedback = fdbck_winText;&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;    } else {&amp;#10;        select_pos = left_pos;&amp;#10;        imageFeedback = (imagePath + &quot;Lgreenlose.bmp&quot;);&amp;#10;        textFeedback = fdbck_loseText;&amp;#10;        soundFeedback = null;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="trial_r_val = r_val[ currentLoop.thisN ]&amp;#10;trial_l_val = l_val[ currentLoop.thisN ]&amp;#10;&amp;#10;# Generate uniformly distributed random number between 0 and 1&amp;#10;hint_prob = rand.uniform(size = 1)&amp;#10;select_prob = rand.uniform(size = 1)&amp;#10;&amp;#10;# Multiple ifs way of changing hint correct probability&amp;#10;if currentLoop.thisN &lt; 10:&amp;#10;    corr_hint_chance = 0.8&amp;#10;&amp;#10;corr_select_chance = 0.8&amp;#10;&amp;#10;# statement to define correct image for trial&amp;#10;if fam_prob_bg[ currentLoop.thisN ]:&amp;#10;    # Determine whether the hint will be show on correct or incorrect side&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;        imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;        correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 0&amp;#10;    &amp;#10;    # Determine whether the selection will be correct or incorrect&amp;#10;    if select_prob &lt;= corr_select_chance:&amp;#10;        select_pos = left_pos&amp;#10;        imageFeedback = imagePath + &quot;Lgreenwin.bmp&quot; #  then display the treasure&amp;#10;        textFeedback = fdbck_winText # Display positive feedback text&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;&amp;#10;    else:&amp;#10;        select_pos = right_pos&amp;#10;        imageFeedback = imagePath + &quot;Rbluelose.bmp&quot;# Otherwise show the empty chest&amp;#10;        textFeedback = fdbck_loseText&amp;#10;        soundFeedback = None&amp;#10;else:&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;        correct_hint = 0&amp;#10;    &amp;#10;    if select_prob &lt;= corr_select_chance:&amp;#10;        select_pos = right_pos&amp;#10;        imageFeedback = imagePath + &quot;Rbluewin.bmp&quot; # The predefined image path is added to the file name&amp;#10;        textFeedback = fdbck_winText # Display positive feedback text&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;&amp;#10;    else:&amp;#10;        select_pos = left_pos&amp;#10;        imageFeedback = imagePath + &quot;Lgreenlose.bmp&quot;&amp;#10;        textFeedback = fdbck_loseText&amp;#10;        soundFeedback = None &amp;#10;" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="if ((fam_prob_bg === &quot;1&quot;)) {&amp;#10;    select_pos = left_pos;&amp;#10;    if (select_pos) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenwin.bmp&quot;);&amp;#10;        score_update = trial_l_val;&amp;#10;        textFeedback = fdbck_winText;&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenlose.bmp&quot;);&amp;#10;        score_update = 0;&amp;#10;        textFeedback = fdbck_loseText;&amp;#10;        soundFeedback = null;&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((key_resp.keys === &quot;right&quot;)) {&amp;#10;        select_pos = right_pos;&amp;#10;        if (key_resp.corr) {&amp;#10;            imageVariable = (imagePath + &quot;Rbluewin.bmp&quot;);&amp;#10;            score_update = trial_r_val;&amp;#10;            textFeedback = fdbck_winText;&amp;#10;            soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;        } else {&amp;#10;            imageVariable = (imagePath + &quot;Rbluelose.bmp&quot;);&amp;#10;            score_update = 0;&amp;#10;            textFeedback = fdbck_loseText;&amp;#10;            soundFeedback = null;&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="if fam_prob_bg == '1': # Start by checking if blue or green is the winner&amp;#10;    select_pos = left_pos&amp;#10;        imageVariable = imagePath + &quot;Lgreenwin.bmp&quot; #  then display the treasure&amp;#10;        textFeedback = fdbck_winText # Display positive feedback text&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenlose.bmp&quot;# Otherwise show the empty chest&amp;#10;        textFeedback = fdbck_loseText&amp;#10;        soundFeedback = None&amp;#10;        elif fam_prob_bg == '0': # Same as above but on the other side &amp;#10;    select_pos = right_pos&amp;#10;        imageVariable = imagePath + &quot;Rbluewin.bmp&quot; # The predefined image path is added to the file name&amp;#10;        textFeedback = fdbck_winText # Display positive feedback text&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluelose.bmp&quot;&amp;#10;        textFeedback = fdbck_loseText&amp;#10;        soundFeedback = None " valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="if ((fam_prob_bg[currentLoop.thisN] === &quot;1&quot;)) {&amp;#10;    if ((select_pos === left_pos)) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenwin.bmp&quot;);&amp;#10;        textFeedback = fdbck_winText;&amp;#10;        soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenlose.bmp&quot;);&amp;#10;        textFeedback = fdbck_loseText;&amp;#10;        soundFeedback = null;&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((fam_prob_bg[currentLoop.thisN] === &quot;0&quot;)) {&amp;#10;        if ((select_pos === right_pos)) {&amp;#10;            imageVariable = (imagePath + &quot;Rbluewin.bmp&quot;);&amp;#10;            textFeedback = fdbck_winText;&amp;#10;            soundFeedback = &quot;stimuli/coins-drop-1.wav&quot;;&amp;#10;        } else {&amp;#10;            imageVariable = (imagePath + &quot;Rbluelose.bmp&quot;);&amp;#10;            textFeedback = fdbck_loseText;&amp;#10;            soundFeedback = null;&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="famTrial_code" valType="code"/>
       </CodeComponent>
@@ -609,9 +584,9 @@
         <Param name="size" updates="constant" val="(2, 2)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="startVal" updates="None" val="1.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="3.0" valType="code"/>
+        <Param name="stopVal" updates="constant" val="2.0" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="texture resolution" updates="constant" val="128" valType="code"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
@@ -667,10 +642,10 @@
       <PolygonComponent name="famSelect_pos">
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="fillColor" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="fillColor" updates="constant" val="" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
-        <Param name="lineColor" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="lineColor" updates="constant" val="yellow" valType="str"/>
         <Param name="lineColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="lineWidth" updates="constant" val="8" valType="code"/>
         <Param name="nVertices" updates="constant" val="4" valType="int"/>
@@ -685,7 +660,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="2.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="stopVal" updates="constant" val="1" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
@@ -699,7 +674,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="import {random as rand} from 'numpy';&amp;#10;var fam_prob_bg, fam_prob_gb, imagePath, imageVariable, l_val, num_trial, one, r_val, trial_list_s, trial_list_s1, val, zero;&amp;#10;imagePath = &quot;stimuli/&quot;;&amp;#10;imageVariable = null;&amp;#10;num_trial = 10;&amp;#10;zero = [0];&amp;#10;one = [1];&amp;#10;trial_list_s = ((zero * 8) + (one * 2));&amp;#10;trial_list_s1 = ((zero * 2) + (one * 8));&amp;#10;rand.shuffle(trial_list_s);&amp;#10;rand.shuffle(trial_list_s1);&amp;#10;fam_prob_bg = trial_list_s;&amp;#10;fam_prob_gb = trial_list_s1;&amp;#10;r_val = [];&amp;#10;l_val = [];&amp;#10;for (var t = 0, _pj_a = num_trial; (t &lt; _pj_a); t += 1) {&amp;#10;    val = rand.randint(1, 100);&amp;#10;    r_val.append(val);&amp;#10;    l_val.append((100 - val));&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -718,7 +693,7 @@
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
         <Param name="flipVert" updates="constant" val="False" valType="bool"/>
-        <Param name="image" updates="set every repeat" val="$imageVariable" valType="str"/>
+        <Param name="image" updates="set every repeat" val="$imageFeedback" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
         <Param name="mask" updates="constant" val="None" valType="str"/>
         <Param name="name" updates="None" val="famImage" valType="code"/>
