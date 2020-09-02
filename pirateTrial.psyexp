@@ -37,7 +37,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="r_val = [];&amp;#10;l_val = [];&amp;#10;for (var t = 0, _pj_a = num_trial; (t &lt; _pj_a); t += 1) {&amp;#10;    val = rand.randint(1, 101);&amp;#10;    r_val.append(val);&amp;#10;    l_val.append((100 - val));&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="trial_r_val = r_val[currentLoop.thisN];&amp;#10;trial_l_val = l_val[currentLoop.thisN];&amp;#10;hint_prob = rand.uniform({&quot;size&quot;: 1});&amp;#10;hint_start = rand.uniform(3, 7);&amp;#10;resp_start = (hint_start + rand.uniform(3, 7));&amp;#10;left_pos = [(- 0.52), (- 0.32)];&amp;#10;right_pos = [0.52, (- 0.32)];&amp;#10;if ((currentLoop.thisN &lt; 30)) {&amp;#10;    corr_hint_chance = 0.75;&amp;#10;} else {&amp;#10;    if ((currentLoop.thisN &lt; 40)) {&amp;#10;        corr_hint_chance = 0.2;&amp;#10;    } else {&amp;#10;        if ((currentLoop.thisN &lt; 50)) {&amp;#10;            corr_hint_chance = 0.8;&amp;#10;        } else {&amp;#10;            if ((currentLoop.thisN &lt; 60)) {&amp;#10;                corr_hint_chance = 0.2;&amp;#10;            } else {&amp;#10;                if ((currentLoop.thisN &lt; 70)) {&amp;#10;                    corr_hint_chance = 0.8;&amp;#10;                } else {&amp;#10;                    if ((currentLoop.thisN &lt; 120)) {&amp;#10;                        corr_hint_chance = 0.15;&amp;#10;                    }&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;if (prob_bg[currentLoop.thisN]) {&amp;#10;    correct_key = &quot;left&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    correct_key = &quot;right&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="#Assuming you have a r_val and and l_val list:&amp;#10;&amp;#10;trial_r_val = r_val[ currentLoop.thisN ]&amp;#10;trial_l_val = l_val[ currentLoop.thisN ]&amp;#10;&amp;#10;# Generate uniformly distributed random number between 0 and 1&amp;#10;hint_prob = rand.uniform(size = 1)&amp;#10;&amp;#10;# Generate start times for hint and response window&amp;#10;hint_start = rand.uniform(3, 7)&amp;#10;resp_start = hint_start + rand.uniform(3, 7)&amp;#10;&amp;#10;# Set up selection positions&amp;#10;left_pos = (-0.52, -0.32)&amp;#10;right_pos = (0.52, -0.32)&amp;#10;&amp;#10;# Pre-generated array way of changing hint correct probability&amp;#10;#corr_hint_chance = hint_prob[ currentLoop.thisN ]&amp;#10;&amp;#10;# Multiple ifs way of changing hint correct probability&amp;#10;if currentLoop.thisN &lt; 30:&amp;#10;       corr_hint_chance = 0.75&amp;#10;elif currentLoop.thisN &lt; 40:&amp;#10;        corr_hint_chance = 0.2&amp;#10;elif currentLoop.thisN &lt; 50:&amp;#10;        corr_hint_chance = 0.8&amp;#10;elif currentLoop.thisN &lt; 60:&amp;#10;        corr_hint_chance = 0.2&amp;#10;elif currentLoop.thisN &lt; 70:&amp;#10;        corr_hint_chance = 0.8&amp;#10;elif currentLoop.thisN &lt; 120:&amp;#10;        corr_hint_chance = 0.15&amp;#10;&amp;#10;# statement to define correct keys for trial&amp;#10;if prob_bg[ currentLoop.thisN ]:&amp;#10;    correct_key = 'left'&amp;#10;    # Determine whether the hint will be show on correct or incorrect side&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;       imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;       correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 0&amp;#10;else:&amp;#10;    correct_key = 'right'&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.bmp&quot;&amp;#10;        correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenhint.bmp&quot;&amp;#10;        correct_hint = 0" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -666,48 +666,6 @@
       </TextComponent>
     </Routine>
     <Routine name="ratioCheck">
-      <KeyboardComponent name="key_resp_2">
-        <Param name="allowedKeys" updates="constant" val="'left','right'" valType="code"/>
-        <Param name="correctAns" updates="constant" val="" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
-        <Param name="name" updates="None" val="key_resp_2" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="store" updates="constant" val="last key" valType="str"/>
-        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
-        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
-      </KeyboardComponent>
-      <TextComponent name="text">
-        <Param name="color" updates="constant" val="white" valType="str"/>
-        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="disabled" updates="None" val="True" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
-        <Param name="name" updates="None" val="text" valType="code"/>
-        <Param name="opacity" updates="constant" val="1" valType="code"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="Right to repeat&amp;#10;&amp;#10;Left to continue" valType="str"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
-      </TextComponent>
       <CodeComponent name="code_2">
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -718,8 +676,8 @@
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="if ((key_resp_2.keys === &quot;left&quot;)) {&amp;#10;    fam_repeat.finished = 1;&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="if key_resp_2.keys == 'left':&amp;#10;    fam_repeat.finished = 1" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="if ((rating.response &gt; 5)) {&amp;#10;    fam_repeat.finished = 1;&amp;#10;}&amp;#10;if ((rating_2.response &gt; 5)) {&amp;#10;    fam_repeat.finished = 1;&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="if rating.response &gt; 5:&amp;#10;   fam_repeat.finished = 1&amp;#10;&amp;#10;if rating_2.response &gt; 5:&amp;#10;        fam_repeat.finished = 1" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_2" valType="code"/>
       </CodeComponent>
@@ -790,7 +748,7 @@
       <TextComponent name="Instruct_1_text">
         <Param name="color" updates="constant" val="black" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
@@ -799,7 +757,7 @@
         <Param name="name" updates="None" val="Instruct_1_text" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.2)" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
@@ -807,18 +765,18 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="In this game, there are two pirates, a green and a blue one, on different islands. Each pirate puts a flag up to tell you how many &amp;#10;coins they have in their treasure chest." valType="str"/>
+        <Param name="text" updates="constant" val="In this game, there are two pirates, a green and a blue one, on different islands. Each pirate puts a flag up to tell you how many &amp;#10;coins they have in their treasure chest.&amp;#10;&amp;#10;&amp;#10;Press the Space Bar to Continue" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
       <ImageComponent name="instruct_1_image">
         <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
         <Param name="flipVert" updates="constant" val="False" valType="bool"/>
-        <Param name="image" updates="constant" val="stimuli/piratetask.bmp" valType="str"/>
+        <Param name="image" updates="constant" val="stimuli/instruct1_image.bmp" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
         <Param name="mask" updates="constant" val="None" valType="str"/>
         <Param name="name" updates="None" val="instruct_1_image" valType="code"/>
@@ -837,9 +795,9 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </ImageComponent>
       <KeyboardComponent name="key_resp_3">
-        <Param name="allowedKeys" updates="constant" val="" valType="code"/>
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
         <Param name="correctAns" updates="constant" val="" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="discard previous" updates="constant" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
