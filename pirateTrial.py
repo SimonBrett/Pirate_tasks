@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on September 02, 2020, at 16:52
+    on September 03, 2020, at 10:52
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -37,7 +37,7 @@ os.chdir(_thisDir)
 # Store info about the experiment session
 psychopyVersion = '2020.1.3'
 expName = 'pirateTrial'  # from the Builder filename that created this script
-expInfo = {'participant': '', 'session': '001'}
+expInfo = {'participant': '', 'session': '001', 'condition': ''}
 dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\tobiiuser\\Documents\\GitHub\\Pirate_tasks\\pirateTrial.py',
+    originPath='C:\\Users\\Daniel\\Documents\\GitHub\\Pirate_tasks\\pirateTrial.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -82,9 +82,6 @@ defaultKeyboard = keyboard.Keyboard()
 
 # Initialize components for Routine "Instruct1"
 Instruct1Clock = core.Clock()
-
-# Initialize components for Routine "famIntro"
-famIntroClock = core.Clock()
 #Store images and initialise feedback display
 imagePath = "stimuli/" 
 imageVariable = None 
@@ -92,43 +89,44 @@ textFeedback = None # Need this to initialise the text feedback display
 fdbck_winText = "Well done you chose correctly!"
 fdbck_loseText = "Better luck next time!"
 soundFeedback = None
-
-#Number of familiarisation trials
-num_trial = 10 
-
-# Setup blue/green win lose ratio
 zero = [0] 
 one = [1]
-trial_list_s = zero*8+one*2 # Blue 80% Green 20%
-trial_list_s1 = zero*2+one*8 # Blue 20% Green 80%
-
 
 from numpy import random as rand #randomise lists
-rand.shuffle(trial_list_s)
-rand.shuffle(trial_list_s1)
 
-#overall familiarisation probability (blue win 80%)
-fam_prob_bg = trial_list_s 
-
-#overall familiarisation probability (green win 80%)
-fam_prob_gb = trial_list_s1
-
-# reward variables
-r_val = []
-l_val = []
-
-#create reward values
-for t in range(0,num_trial):
-    val = rand.randint(1,100)
-    r_val.append(val)
-    l_val.append(100-val)
-
-
-# Initialize components for Routine "famTrial"
-famTrialClock = core.Clock()
 # Set up selection positions
 left_pos = (-0.52, -0.32)
 right_pos = (0.52, -0.32)
+Instruct_1_text = visual.TextStim(win=win, name='Instruct_1_text',
+    text='In this game, there are two pirates, a green and a blue one, on different islands. Each pirate puts a flag up to tell you how many \ncoins they have in their treasure chest.\n\n\nPress the Space Bar to Continue',
+    font='Arial',
+    pos=(0, 0.2), height=0.05, wrapWidth=1.5, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-1.0);
+key_resp_3 = keyboard.Keyboard()
+counterbalancing = int(expInfo['condition'])
+
+if counterbalancing % 2:
+    trial_list_s = zero*2 + one*8
+else:
+    trial_list_s = zero*8 + one*2
+
+if counterbalancing // 4:
+    cb_hint_chance_1 = 0.75
+    cb_hint_chance_2 = 0.15
+else:
+    cb_hint_chance_1 = 0.25
+    cb_hint_chance_2 = 0.85
+
+
+#if (condition_value % 4) // 2:
+
+# Initialize components for Routine "famIntro"
+famIntroClock = core.Clock()
+
+# Initialize components for Routine "famTrial"
+famTrialClock = core.Clock()
 famBackground = visual.ImageStim(
     win=win,
     name='famBackground', 
@@ -208,48 +206,24 @@ famfdbck_text = visual.TextStim(win=win, name='famfdbck_text',
 
 # Initialize components for Routine "ratioCheck"
 ratioCheckClock = core.Clock()
-rating = visual.RatingScale(win=win, name='rating', marker='slider', size=1.0, pos=[0.0, -0.4], low=0, high=10, labels=['All green', ' All blue'], scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ', markerStart='5')
-rating_2 = visual.RatingScale(win=win, name='rating_2', marker='slider', size=1.0, pos=[0.0, 0.2], low=0, high=10, labels=['Always unhelpful', ' Always helpful'], scale='Was the clue more often helpful or unhelpful to find the treasure? ')
+Slider1 = visual.RatingScale(win=win, name='Slider1', marker='slider', size=1.0, pos=[0.0, -0.4], low=0, high=10, labels=['All green', ' All blue'], scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ', markerStart='5')
+Slider2 = visual.RatingScale(win=win, name='Slider2', marker='slider', size=1.0, pos=[0.0, 0.2], low=0, high=10, labels=['Always unhelpful', ' Always helpful'], scale='Was the clue more often helpful or unhelpful to find the treasure? ')
 
 # Initialize components for Routine "Instruct2"
 Instruct2Clock = core.Clock()
+text = visual.TextStim(win=win, name='text',
+    text='You’re going to see the pirates and their chests again now. \nthis time you have to GUESS where the treasure is each time using the clues and your knowledge of the pirates as you go. It might not be the same as you’ve just seen and it might change during the game. If you guess correctly, you will win the coins in the chest. \nRemember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. \nalso, remember, the clues may be helpful or unhelpful and might change during the game too. \nWhen you have won a certain amount of coins you get to move on up to the next level. \nIf you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.\n',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
 
 # Initialize components for Routine "Intro"
 IntroClock = core.Clock()
-imagePath = "stimuli/" # This establishes where the stimuli are stored
-imageVariable = None # Need this to initialise the feedback image display
-textFeedback = None # Need this to initialise the text feedback display
-fdbck_winText = "Well done you chose correctly!"
-fdbck_loseText = "Better luck next time!"
-#soundFeedback = None # Need this to initialise the sound feedback display
-
-
-num_trial = 120 # Number of trials in the experiment
-zero = [0] #create lists 
-one = [1]
-trial_list_s = zero*45+one*15 # Blue 75% Green 25%
-trial_list_vi = zero*16+one*4
-trial_list_vii = zero*4+one*16
-
-from numpy import random as rand #randomise lists
-rand.shuffle(trial_list_s)
-rand.shuffle(trial_list_vi)
-rand.shuffle(trial_list_vii)
-#overall task probability
-prob_bg = trial_list_s + trial_list_vi + trial_list_vii + trial_list_vi
-
 
 # Initialize components for Routine "studyTrial"
 studyTrialClock = core.Clock()
-r_val = []
-l_val = []
-
-#create reward values
-for t in range(0,num_trial):
-    val = rand.randint(1,100)
-    r_val.append(val)
-    l_val.append(100-val)
-
 background = visual.ImageStim(
     win=win,
     name='background', 
@@ -413,8 +387,11 @@ routineTimer = core.CountdownTimer()  # to track time remaining of each (non-sli
 # ------Prepare to start Routine "Instruct1"-------
 continueRoutine = True
 # update component parameters for each repeat
+key_resp_3.keys = []
+key_resp_3.rt = []
+_key_resp_3_allKeys = []
 # keep track of which components have finished
-Instruct1Components = []
+Instruct1Components = [Instruct_1_text, key_resp_3]
 for thisComponent in Instruct1Components:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -437,6 +414,37 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     
+    # *Instruct_1_text* updates
+    if Instruct_1_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        Instruct_1_text.frameNStart = frameN  # exact frame index
+        Instruct_1_text.tStart = t  # local t and not account for scr refresh
+        Instruct_1_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(Instruct_1_text, 'tStartRefresh')  # time at next scr refresh
+        Instruct_1_text.setAutoDraw(True)
+    
+    # *key_resp_3* updates
+    waitOnFlip = False
+    if key_resp_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        key_resp_3.frameNStart = frameN  # exact frame index
+        key_resp_3.tStart = t  # local t and not account for scr refresh
+        key_resp_3.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(key_resp_3, 'tStartRefresh')  # time at next scr refresh
+        key_resp_3.status = STARTED
+        # keyboard checking is just starting
+        waitOnFlip = True
+        win.callOnFlip(key_resp_3.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_3.clearEvents, eventType='keyboard')  # clear events on next screen flip
+    if key_resp_3.status == STARTED and not waitOnFlip:
+        theseKeys = key_resp_3.getKeys(keyList=['space'], waitRelease=False)
+        _key_resp_3_allKeys.extend(theseKeys)
+        if len(_key_resp_3_allKeys):
+            key_resp_3.keys = _key_resp_3_allKeys[-1].name  # just the last key pressed
+            key_resp_3.rt = _key_resp_3_allKeys[-1].rt
+            # a response ends the routine
+            continueRoutine = False
+    
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
@@ -458,6 +466,8 @@ while continueRoutine:
 for thisComponent in Instruct1Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+thisExp.addData('Instruct_1_text.started', Instruct_1_text.tStartRefresh)
+thisExp.addData('Instruct_1_text.stopped', Instruct_1_text.tStopRefresh)
 # the Routine "Instruct1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -483,6 +493,22 @@ for thisFam_repeat in fam_repeat:
     # ------Prepare to start Routine "famIntro"-------
     continueRoutine = True
     # update component parameters for each repeat
+    rand.shuffle(trial_list_s)
+    
+    #overall familiarisation probability (blue win 80%)
+    fam_prob_bg = trial_list_s 
+    
+    num_trial = len(fam_prob_bg)
+    
+    # reward variables
+    r_val = []
+    l_val = []
+    
+    #create reward values
+    for t in range(0,num_trial):
+        val = rand.randint(1,100)
+        r_val.append(val)
+        l_val.append(100-val)
     # keep track of which components have finished
     famIntroComponents = []
     for thisComponent in famIntroComponents:
@@ -534,7 +560,7 @@ for thisFam_repeat in fam_repeat:
     # set up handler to look after randomisation of conditions etc
     fam_trials = data.TrialHandler(nReps=1, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=data.importConditions('famtrialList.xlsx'),
+        trialList=data.importConditions('famtrialList.xlsx', selection='1'),
         seed=None, name='fam_trials')
     thisExp.addLoop(fam_trials)  # add the loop to the experiment
     thisFam_trial = fam_trials.trialList[0]  # so we can initialise stimuli with some values
@@ -912,11 +938,11 @@ for thisFam_repeat in fam_repeat:
     
     # ------Prepare to start Routine "ratioCheck"-------
     continueRoutine = True
-    # update component parameters for each repea
-    rating.reset()
-    rating_2.reset()
+    # update component parameters for each repeat
+    Slider1.reset()
+    Slider2.reset()
     # keep track of which components have finished
-    ratioCheckComponents = [rating, rating_2]
+    ratioCheckComponents = [Slider1, Slider2]
     for thisComponent in ratioCheckComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -938,24 +964,24 @@ for thisFam_repeat in fam_repeat:
         tThisFlipGlobal = win.getFutureFlipTime(clock=None)
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
-        # *rating* updates
-        if rating.status == NOT_STARTED and t >= 0-frameTolerance:
+        # *Slider1* updates
+        if Slider1.status == NOT_STARTED and t >= 0-frameTolerance:
             # keep track of start time/frame for later
-            rating.frameNStart = frameN  # exact frame index
-            rating.tStart = t  # local t and not account for scr refresh
-            rating.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(rating, 'tStartRefresh')  # time at next scr refresh
-            rating.setAutoDraw(True)
-        continueRoutine &= rating.noResponse  # a response ends the trial
-        # *rating_2* updates
-        if rating_2.status == NOT_STARTED and t >= 0.0-frameTolerance:
+            Slider1.frameNStart = frameN  # exact frame index
+            Slider1.tStart = t  # local t and not account for scr refresh
+            Slider1.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(Slider1, 'tStartRefresh')  # time at next scr refresh
+            Slider1.setAutoDraw(True)
+        continueRoutine &= Slider1.noResponse  # a response ends the trial
+        # *Slider2* updates
+        if Slider2.status == NOT_STARTED and t >= 0.0-frameTolerance:
             # keep track of start time/frame for later
-            rating_2.frameNStart = frameN  # exact frame index
-            rating_2.tStart = t  # local t and not account for scr refresh
-            rating_2.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(rating_2, 'tStartRefresh')  # time at next scr refresh
-            rating_2.setAutoDraw(True)
-        continueRoutine &= rating_2.noResponse  # a response ends the trial
+            Slider2.frameNStart = frameN  # exact frame index
+            Slider2.tStart = t  # local t and not account for scr refresh
+            Slider2.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(Slider2, 'tStartRefresh')  # time at next scr refresh
+            Slider2.setAutoDraw(True)
+        continueRoutine &= Slider2.noResponse  # a response ends the trial
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -978,21 +1004,31 @@ for thisFam_repeat in fam_repeat:
     for thisComponent in ratioCheckComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    if rating > 5:
-       fam_repeat.finished = 1
-    
-    if rating_2 > 5:
+    #if counterbalancing % 2:
+        
+        if Slider1.getRating() > 5:
             fam_repeat.finished = 1
+    
+        if Slider2.getRating() > 5:
+            fam_repeat.finished = 1
+        
+    #else:
+    #    if rating.response < 5:
+    #        fam_repeat.finished = 1
+    
+    #    if rating_2.response < 5:
+    #        fam_repeat.finished = 1
+    
     # store data for fam_repeat (TrialHandler)
-    fam_repeat.addData('rating.response', rating.getRating())
-    fam_repeat.addData('rating.rt', rating.getRT())
-    fam_repeat.addData('rating.started', rating.tStart)
-    fam_repeat.addData('rating.stopped', rating.tStop)
+    fam_repeat.addData('Slider1.response', Slider1.getRating())
+    fam_repeat.addData('Slider1.rt', Slider1.getRT())
+    fam_repeat.addData('Slider1.started', Slider1.tStart)
+    fam_repeat.addData('Slider1.stopped', Slider1.tStop)
     # store data for fam_repeat (TrialHandler)
-    fam_repeat.addData('rating_2.response', rating_2.getRating())
-    fam_repeat.addData('rating_2.rt', rating_2.getRT())
-    fam_repeat.addData('rating_2.started', rating_2.tStart)
-    fam_repeat.addData('rating_2.stopped', rating_2.tStop)
+    fam_repeat.addData('Slider2.response', Slider2.getRating())
+    fam_repeat.addData('Slider2.rt', Slider2.getRT())
+    fam_repeat.addData('Slider2.started', Slider2.tStart)
+    fam_repeat.addData('Slider2.stopped', Slider2.tStop)
     # the Routine "ratioCheck" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
@@ -1004,7 +1040,7 @@ for thisFam_repeat in fam_repeat:
 continueRoutine = True
 # update component parameters for each repeat
 # keep track of which components have finished
-Instruct2Components = []
+Instruct2Components = [text]
 for thisComponent in Instruct2Components:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -1027,6 +1063,15 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     
+    # *text* updates
+    if text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        text.frameNStart = frameN  # exact frame index
+        text.tStart = t  # local t and not account for scr refresh
+        text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(text, 'tStartRefresh')  # time at next scr refresh
+        text.setAutoDraw(True)
+    
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
@@ -1048,12 +1093,35 @@ while continueRoutine:
 for thisComponent in Instruct2Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+thisExp.addData('text.started', text.tStartRefresh)
+thisExp.addData('text.stopped', text.tStopRefresh)
 # the Routine "Instruct2" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
 # ------Prepare to start Routine "Intro"-------
 continueRoutine = True
 # update component parameters for each repeat
+trial_list_s = zero*45+one*15 # Blue 75% Green 25%
+trial_list_vi = zero*16+one*4
+trial_list_vii = zero*4+one*16
+
+rand.shuffle(trial_list_s)
+rand.shuffle(trial_list_vi)
+rand.shuffle(trial_list_vii)
+#overall task probability
+prob_bg = trial_list_s + trial_list_vi + trial_list_vii + trial_list_vi
+
+num_trial = len(prob_bg)
+
+r_val = []
+l_val = []
+
+#create reward values
+for t in range(0,num_trial):
+    val = rand.randint(1,100)
+    r_val.append(val)
+    l_val.append(100-val)
+
 # keep track of which components have finished
 IntroComponents = []
 for thisComponent in IntroComponents:
@@ -1146,7 +1214,7 @@ for thisTrial in trials:
     
     # Multiple ifs way of changing hint correct probability
     if currentLoop.thisN < 30:
-           corr_hint_chance = 0.75
+           corr_hint_chance = cb_hint_chance_1
     elif currentLoop.thisN < 40:
             corr_hint_chance = 0.2
     elif currentLoop.thisN < 50:
@@ -1156,7 +1224,8 @@ for thisTrial in trials:
     elif currentLoop.thisN < 70:
             corr_hint_chance = 0.8
     elif currentLoop.thisN < 120:
-            corr_hint_chance = 0.15
+            corr_hint_chance = cb_hint_chance_2
+    
     
     # statement to define correct keys for trial
     if prob_bg[ currentLoop.thisN ]:
