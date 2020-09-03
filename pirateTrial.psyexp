@@ -812,15 +812,55 @@
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
-    </Routine>
-    <Routine name="Instruct2"/>
-    <Routine name="famIntro">
-      <CodeComponent name="fam_setup">
-        <Param name="Begin Experiment" updates="constant" val="#Store images and initialise feedback display&amp;#10;imagePath = &quot;stimuli/&quot; &amp;#10;imageVariable = None &amp;#10;textFeedback = None # Need this to initialise the text feedback display&amp;#10;fdbck_winText = &quot;Well done you chose correctly!&quot;&amp;#10;fdbck_loseText = &quot;Better luck next time!&quot;&amp;#10;soundFeedback = None&amp;#10;&amp;#10;#Number of familiarisation trials&amp;#10;num_trial = 10 &amp;#10;&amp;#10;# Setup blue/green win lose ratio&amp;#10;zero = [0] &amp;#10;one = [1]&amp;#10;trial_list_s = zero*8+one*2 # Blue 80% Green 20%&amp;#10;trial_list_s1 = zero*2+one*8 # Blue 20% Green 80%&amp;#10;&amp;#10;&amp;#10;from numpy import random as rand #randomise lists&amp;#10;rand.shuffle(trial_list_s)&amp;#10;rand.shuffle(trial_list_s1)&amp;#10;&amp;#10;#overall familiarisation probability (blue win 80%)&amp;#10;fam_prob_bg = trial_list_s &amp;#10;&amp;#10;#overall familiarisation probability (green win 80%)&amp;#10;fam_prob_gb = trial_list_s1&amp;#10;&amp;#10;# reward variables&amp;#10;r_val = []&amp;#10;l_val = []&amp;#10;&amp;#10;#create reward values&amp;#10;for t in range(0,num_trial):&amp;#10;    val = rand.randint(1,100)&amp;#10;    r_val.append(val)&amp;#10;    l_val.append(100-val)&amp;#10;" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="import {random as rand} from 'numpy';&amp;#10;var fam_prob_bg, fam_prob_gb, fdbck_loseText, fdbck_winText, imagePath, imageVariable, l_val, num_trial, one, r_val, soundFeedback, textFeedback, trial_list_s, trial_list_s1, val, zero;&amp;#10;imagePath = &quot;stimuli/&quot;;&amp;#10;imageVariable = null;&amp;#10;textFeedback = null;&amp;#10;fdbck_winText = &quot;Well done you chose correctly!&quot;;&amp;#10;fdbck_loseText = &quot;Better luck next time!&quot;;&amp;#10;soundFeedback = null;&amp;#10;num_trial = 10;&amp;#10;zero = [0];&amp;#10;one = [1];&amp;#10;trial_list_s = ((zero * 8) + (one * 2));&amp;#10;trial_list_s1 = ((zero * 2) + (one * 8));&amp;#10;rand.shuffle(trial_list_s);&amp;#10;rand.shuffle(trial_list_s1);&amp;#10;fam_prob_bg = trial_list_s;&amp;#10;fam_prob_gb = trial_list_s1;&amp;#10;r_val = [];&amp;#10;l_val = [];&amp;#10;for (var t = 0, _pj_a = num_trial; (t &lt; _pj_a); t += 1) {&amp;#10;    val = rand.randint(1, 100);&amp;#10;    r_val.append(val);&amp;#10;    l_val.append((100 - val));&amp;#10;}&amp;#10;" valType="extendedCode"/>
+      <CodeComponent name="counterbalancing_code">
+        <Param name="Begin Experiment" updates="constant" val="#if condition_value % 2:&amp;#10; #   trial_list_s == zero*2 + one*8&amp;#10;    &amp;#10;#else:&amp;#10; # do_something_else&amp;#10;  &amp;#10;#if condition_value // 4:&amp;#10;&amp;#10;&amp;#10;#if (condition_value % 4) // 2:" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="counterbalancing_code" valType="code"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="Instruct2">
+      <TextComponent name="text">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="You’re going to see the pirates and their chests again now. &amp;#10;this time you have to GUESS where the treasure is each time using the clues and your knowledge of the pirates as you go. It might not be the same as you’ve just seen and it might change during the game. If you guess correctly, you will win the coins in the chest. &amp;#10;Remember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. &amp;#10;also, remember, the clues may be helpful or unhelpful and might change during the game too. &amp;#10;When you have won a certain amount of coins you get to move on up to the next level. &amp;#10;If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.&amp;#10;" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="famIntro">
+      <CodeComponent name="fam_setup">
+        <Param name="Begin Experiment" updates="constant" val="#Store images and initialise feedback display&amp;#10;imagePath = &quot;stimuli/&quot; &amp;#10;imageVariable = None &amp;#10;textFeedback = None # Need this to initialise the text feedback display&amp;#10;fdbck_winText = &quot;Well done you chose correctly!&quot;&amp;#10;fdbck_loseText = &quot;Better luck next time!&quot;&amp;#10;soundFeedback = None&amp;#10;&amp;#10;#Number of familiarisation trials&amp;#10;num_trial = 10 &amp;#10;&amp;#10;# Setup blue/green win lose ratio&amp;#10;zero = [0] &amp;#10;one = [1]&amp;#10;trial_list_s = zero*8+one*2 # Blue 80% Green 20%&amp;#10;&amp;#10;&amp;#10;from numpy import random as rand #randomise lists&amp;#10;rand.shuffle(trial_list_s)&amp;#10;&amp;#10;&amp;#10;#overall familiarisation probability (blue win 80%)&amp;#10;fam_prob_bg = trial_list_s &amp;#10;&amp;#10;# reward variables&amp;#10;r_val = []&amp;#10;l_val = []&amp;#10;&amp;#10;#create reward values&amp;#10;for t in range(0,num_trial):&amp;#10;    val = rand.randint(1,100)&amp;#10;    r_val.append(val)&amp;#10;    l_val.append(100-val)&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="import {random as rand} from 'numpy';&amp;#10;var fam_prob_bg, fam_prob_gb, fdbck_loseText, fdbck_winText, imagePath, imageVariable, l_val, num_trial, one, r_val, soundFeedback, textFeedback, trial_list_s, val, zero;&amp;#10;imagePath = &quot;stimuli/&quot;;&amp;#10;imageVariable = null;&amp;#10;textFeedback = null;&amp;#10;fdbck_winText = &quot;Well done you chose correctly!&quot;;&amp;#10;fdbck_loseText = &quot;Better luck next time!&quot;;&amp;#10;soundFeedback = null;&amp;#10;num_trial = 10;&amp;#10;zero = [0];&amp;#10;one = [1];&amp;#10;trial_list_s = ((zero * 8) + (one * 2));&amp;#10;rand.shuffle(trial_list_s);&amp;#10;fam_prob_bg = trial_list_s;&amp;#10;fam_prob_gb = trial_list_s1;&amp;#10;r_val = [];&amp;#10;l_val = [];&amp;#10;for (var t = 0, _pj_a = num_trial; (t &lt; _pj_a); t += 1) {&amp;#10;    val = rand.randint(1, 100);&amp;#10;    r_val.append(val);&amp;#10;    l_val.append((100 - val));&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>

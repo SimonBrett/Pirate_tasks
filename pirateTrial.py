@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
@@ -912,7 +912,7 @@ for thisFam_repeat in fam_repeat:
     
     # ------Prepare to start Routine "ratioCheck"-------
     continueRoutine = True
-    # update component parameters for each repeat
+    # update component parameters for each repea
     rating.reset()
     rating_2.reset()
     # keep track of which components have finished
