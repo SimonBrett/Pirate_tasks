@@ -383,21 +383,6 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="trials_code" valType="code"/>
       </CodeComponent>
-      <CodeComponent name="counterbalancing_code_2">
-        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="#counterbalancing = int(expInfo['condition'])&amp;#10;&amp;#10;#if counterbalancing % 2:&amp;#10;#    trial_list_s = zero*8 + one*2&amp;#10;#    cb_hint_chance = 0.8&amp;#10;&amp;#10;#if counterbalancing //4:&amp;#10;#    trial_list_s = zero*2 + one*8&amp;#10;#    cb_hint_chance = 0.8&amp;#10;&amp;#10;&amp;#10;&amp;#10;&amp;#10;#if counterbalancing // 4:&amp;#10;#    cb_hint_chance_1 = 0.75&amp;#10;#    cb_hint_chance_2 = 0.15&amp;#10;#else:&amp;#10;#    cb_hint_chance_1 = 0.25&amp;#10;#    cb_hint_chance_2 = 0.85&amp;#10;&amp;#10;&amp;#10;#if (condition_value % 4) // 2:" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="name" updates="None" val="counterbalancing_code_2" valType="code"/>
-      </CodeComponent>
     </Routine>
     <Routine name="levelUp">
       <CodeComponent name="code">
@@ -1145,7 +1130,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="You’re going to see the pirates and their chests again now. This time you have to GUESS where the treasure is each time using the clues and your knowledge of the pirates as you go. It might not be the same as you’ve just seen and it might change during the game. If you guess correctly, you will win the coins in the chest. &amp;#10;&amp;#10;Remember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. also, remember, the clues may be helpful or unhelpful and might change during the game too. &amp;#10;&amp;#10;When you have won a certain amount of coins you get to move on up to the next level. &amp;#10;&amp;#10;If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.&amp;#10;" valType="str"/>
+        <Param name="text" updates="constant" val="You’re going to see the pirates and their chests again now. This time you have to GUESS where the treasure is each time using the clues and your knowledge of the pirates as you go. It might not be the same as you’ve just seen and it might change during the game. If you guess correctly, you will win the coins in the chest. &amp;#10;&amp;#10;" valType="str"/>
         <Param name="units" updates="None" val="norm" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="1.75" valType="code"/>
       </TextComponent>
@@ -1354,6 +1339,94 @@
         <Param name="wrapWidth" updates="constant" val="1.75" valType="code"/>
       </TextComponent>
     </Routine>
+    <Routine name="Instruct6">
+      <TextComponent name="text_2">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="text_2" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Remember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. also, remember, the clues may be helpful or unhelpful and might change during the game too. &amp;#10;&amp;#10;When you have won a certain amount of coins you get to move on up to the next level. &amp;#10;&amp;#10;&amp;#10;&amp;#10;Press spacebar to continue&amp;#10;&amp;#10;" valType="str"/>
+        <Param name="units" updates="None" val="norm" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_8">
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_8" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="Instruct7">
+      <TextComponent name="text_3">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="name" updates="None" val="text_3" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.&amp;#10;&amp;#10;&amp;#10;&amp;#10;&amp;#10;&amp;#10;Press spacebar to continue&amp;#10;" valType="str"/>
+        <Param name="units" updates="None" val="norm" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_9">
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_9" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
   </Routines>
   <Flow>
     <Routine name="Instruct1"/>
@@ -1379,7 +1452,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="10" valType="code"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
       <Param name="name" updates="None" val="fam_trials" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
@@ -1389,6 +1462,8 @@
     <Routine name="ratioCheck"/>
     <LoopTerminator name="fam_repeat"/>
     <Routine name="Instruct5"/>
+    <Routine name="Instruct6"/>
+    <Routine name="Instruct7"/>
     <Routine name="Intro"/>
     <LoopInitiator loopType="TrialHandler" name="trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>

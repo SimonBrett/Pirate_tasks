@@ -34,7 +34,7 @@
     <Routine name="trial">
       <RatingScaleComponent name="rating">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="win=win,&amp;#10;marker='slider',&amp;#10;size=1.0, &amp;#10;pos=[0.0, -0.4],&amp;#10;low=0, &amp;#10;high=10,&amp;#10;labels=['All Green', ' All Blue'],&amp;#10;scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ',&amp;#10;markerStart='5',&amp;#10;size = None, &amp;#10;font = 'Helvetica Bold'&amp;#10;" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>

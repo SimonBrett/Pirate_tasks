@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on September 21, 2020, at 10:54
+    on September 29, 2020, at 14:20
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -51,7 +51,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\Daniel\\Documents\\GitHub\\Pirate_tasks\\pirateTrial.py',
+    originPath='C:\\Users\\tobiiuser\\Documents\\GitHub\\Pirate_tasks\\pirateTrial.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -116,6 +116,8 @@ instruct_1_image = visual.ImageStim(
 key_resp_3 = keyboard.Keyboard()
 counterbalancing = int(expInfo['condition'])
 
+    # Note --> zero = bluewin, one = greenwin
+
 if counterbalancing == 1:
     
     # Green or blue weighting in fam trials (cond 1)
@@ -124,7 +126,7 @@ if counterbalancing == 1:
     # Correct hint chance for fam trials (cond 1)
     cb_hint_chance = 0.8
     
-    # Hint chance for main trials
+    # Hint chance for main trials (cond 1)
     cb_hint_chance_1 = 0.75
     cb_hint_chance_2 = 0.15
     
@@ -135,7 +137,7 @@ elif counterbalancing == 2:
     # Correct hint chance for fam trials (cond 1)
     cb_hint_chance = 0.8
     
-    # Hint chance for main trials
+    # Hint chance for main trials (cond 1)
     cb_hint_chance_1 = 0.75
     cb_hint_chance_2 = 0.15
 
@@ -143,46 +145,56 @@ elif counterbalancing == 3:
     
     # Green or blue weighting in fam trials (cond 1)
     trial_list_s = zero*8 + one*2
+    # Correct hint chance for fam trials (cond 1)
     cb_hint_chance = 0.8
     
-    # Hint chance for main trials
+    # Hint chance for main trials (cond 2)
     cb_hint_chance_1 = 0.25
     cb_hint_chance_2 = 0.85
     
 elif counterbalancing == 4:
     # Green or blue weighting in fam trials (cond 2)
     trial_list_s = zero*2 + one*8
+    # Correct hint chance for fam trials (cond 1)
     cb_hint_chance = 0.8
     
-    # Hint chance for main trials
+    # Hint chance for main trials (cond 2)
     cb_hint_chance_1 = 0.25
     cb_hint_chance_2 = 0.85
+    
 elif counterbalancing == 5:
     # Green or blue weighting in fam trials (cond 1)
     trial_list_s = zero*8 + one*2
-    # Correct hint chance for fam trials (cond 1)
+    # Correct hint chance for fam trials (cond 2)
     cb_hint_chance = 0.2
+    # Hint chance for main trials (cond 1)
     cb_hint_chance_1 = 0.75
     cb_hint_chance_2 = 0.15
 
 elif counterbalancing == 6:
     # Green or blue weighting in fam trials (cond 2)
     trial_list_s = zero*2 + one*8
+    # Correct hint chance for fam trials (cond 2)
     cb_hint_chance = 0.2
+    # Hint chance for main trials (cond 1)
     cb_hint_chance_1 = 0.75
     cb_hint_chance_2 = 0.15
 
 elif counterbalancing == 7:
     # Green or blue weighting in fam trials (cond 1)
     trial_list_s = zero*8 + one*2
+    # Correct hint chance for fam trials (cond 2)
     cb_hint_chance = 0.2
+    # Hint chance for main trials (cond 2)
     cb_hint_chance_1 = 0.25
     cb_hint_chance_2 = 0.85
     
 elif counterbalancing == 8:
     # Green or blue weighting in fam trials (cond 2)
     trial_list_s = zero*2 + one*8
+    # Correct hint chance for fam trials (cond 2)
     cb_hint_chance = 0.2
+    # Hint chance for main trials (cond 2)
     cb_hint_chance_1 = 0.25
     cb_hint_chance_2 = 0.85
 spacebar_text = visual.TextStim(win=win, name='spacebar_text',
@@ -362,13 +374,35 @@ key_resp_2 = keyboard.Keyboard()
 # Initialize components for Routine "Instruct5"
 Instruct5Clock = core.Clock()
 text = visual.TextStim(win=win, name='text',
-    text='You’re going to see the pirates and their chests again now. This time you have to GUESS where the treasure is each time using the clues and your knowledge of the pirates as you go. It might not be the same as you’ve just seen and it might change during the game. If you guess correctly, you will win the coins in the chest. \n\nRemember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. also, remember, the clues may be helpful or unhelpful and might change during the game too. \n\nWhen you have won a certain amount of coins you get to move on up to the next level. \n\nIf you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.\n',
+    text='You’re going to see the pirates and their chests again now. This time you have to GUESS where the treasure is each time using the clues and your knowledge of the pirates as you go. It might not be the same as you’ve just seen and it might change during the game. If you guess correctly, you will win the coins in the chest. \n\n',
     font='Arial',
     units='norm', pos=(0, 0), height=0.1, wrapWidth=1.75, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=0.0);
 key_resp_7 = keyboard.Keyboard()
+
+# Initialize components for Routine "Instruct6"
+Instruct6Clock = core.Clock()
+text_2 = visual.TextStim(win=win, name='text_2',
+    text='Remember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. also, remember, the clues may be helpful or unhelpful and might change during the game too. \n\nWhen you have won a certain amount of coins you get to move on up to the next level. \n\n\n\nPress spacebar to continue\n\n',
+    font='Arial',
+    units='norm', pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+key_resp_8 = keyboard.Keyboard()
+
+# Initialize components for Routine "Instruct7"
+Instruct7Clock = core.Clock()
+text_3 = visual.TextStim(win=win, name='text_3',
+    text='If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.\n\n\n\n\n\nPress spacebar to continue\n',
+    font='Arial',
+    units='norm', pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
+key_resp_9 = keyboard.Keyboard()
 
 # Initialize components for Routine "Intro"
 IntroClock = core.Clock()
@@ -473,7 +507,7 @@ L_text_2 = visual.TextStim(win=win, name='L_text_2',
 fdbck_text = visual.TextStim(win=win, name='fdbck_text',
     text='default text',
     font='Arial',
-    pos=(0, 0.4), height=0.1, wrapWidth=None, ori=0, 
+    units='norm', pos=(0, 0.4), height=0.1, wrapWidth=1, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-3.0);
@@ -1555,15 +1589,16 @@ for thisFam_repeat in fam_repeat:
     for thisComponent in ratioCheckComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
+    # Remember to fix the comparison signs in here (<, >) for each of the different conditions
     
     if counterbalancing < 5 and counterbalancing % 2:
         
-        if TreasureLocation.getRating() > 5 and HelpfulHint.getRating() > 5:
+        if TreasureLocation.getRating() < 5 and HelpfulHint.getRating() > 5:
             fam_repeat.finished = 1
             
-    elif counterbalancing > 5 and counterbalancing % 2:
+    elif counterbalancing >= 5 and counterbalancing % 2:
         
-        if TreasureLocation.getRating() > 5 and HelpfulHint.getRating() > 5:
+        if TreasureLocation.getRating() < 5 and HelpfulHint.getRating() < 5:
             fam_repeat.finished = 1
             
     elif counterbalancing < 5 and not counterbalancing % 2:
@@ -1571,9 +1606,9 @@ for thisFam_repeat in fam_repeat:
         if TreasureLocation.getRating() > 5 and HelpfulHint.getRating() > 5:
             fam_repeat.finished = 1
             
-    elif counterbalancing > 5 and not counterbalancing % 2:
+    elif counterbalancing >= 5 and not counterbalancing % 2:
         
-        if TreasureLocation.getRating() > 5 and HelpfulHint.getRating() > 5:
+        if TreasureLocation.getRating() > 5 and HelpfulHint.getRating() < 5:
             fam_repeat.finished = 1
     # store data for fam_repeat (TrialHandler)
     fam_repeat.addData('TreasureLocation.response', TreasureLocation.getRating())
@@ -1688,6 +1723,198 @@ thisExp.nextEntry()
 # the Routine "Instruct5" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
+# ------Prepare to start Routine "Instruct6"-------
+continueRoutine = True
+# update component parameters for each repeat
+key_resp_8.keys = []
+key_resp_8.rt = []
+_key_resp_8_allKeys = []
+# keep track of which components have finished
+Instruct6Components = [text_2, key_resp_8]
+for thisComponent in Instruct6Components:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+Instruct6Clock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
+
+# -------Run Routine "Instruct6"-------
+while continueRoutine:
+    # get current time
+    t = Instruct6Clock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=Instruct6Clock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *text_2* updates
+    if text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        text_2.frameNStart = frameN  # exact frame index
+        text_2.tStart = t  # local t and not account for scr refresh
+        text_2.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(text_2, 'tStartRefresh')  # time at next scr refresh
+        text_2.setAutoDraw(True)
+    
+    # *key_resp_8* updates
+    waitOnFlip = False
+    if key_resp_8.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        key_resp_8.frameNStart = frameN  # exact frame index
+        key_resp_8.tStart = t  # local t and not account for scr refresh
+        key_resp_8.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(key_resp_8, 'tStartRefresh')  # time at next scr refresh
+        key_resp_8.status = STARTED
+        # keyboard checking is just starting
+        waitOnFlip = True
+        win.callOnFlip(key_resp_8.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_8.clearEvents, eventType='keyboard')  # clear events on next screen flip
+    if key_resp_8.status == STARTED and not waitOnFlip:
+        theseKeys = key_resp_8.getKeys(keyList=['space'], waitRelease=False)
+        _key_resp_8_allKeys.extend(theseKeys)
+        if len(_key_resp_8_allKeys):
+            key_resp_8.keys = _key_resp_8_allKeys[-1].name  # just the last key pressed
+            key_resp_8.rt = _key_resp_8_allKeys[-1].rt
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in Instruct6Components:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "Instruct6"-------
+for thisComponent in Instruct6Components:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+thisExp.addData('text_2.started', text_2.tStartRefresh)
+thisExp.addData('text_2.stopped', text_2.tStopRefresh)
+# check responses
+if key_resp_8.keys in ['', [], None]:  # No response was made
+    key_resp_8.keys = None
+thisExp.addData('key_resp_8.keys',key_resp_8.keys)
+if key_resp_8.keys != None:  # we had a response
+    thisExp.addData('key_resp_8.rt', key_resp_8.rt)
+thisExp.addData('key_resp_8.started', key_resp_8.tStartRefresh)
+thisExp.addData('key_resp_8.stopped', key_resp_8.tStopRefresh)
+thisExp.nextEntry()
+# the Routine "Instruct6" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
+# ------Prepare to start Routine "Instruct7"-------
+continueRoutine = True
+# update component parameters for each repeat
+key_resp_9.keys = []
+key_resp_9.rt = []
+_key_resp_9_allKeys = []
+# keep track of which components have finished
+Instruct7Components = [text_3, key_resp_9]
+for thisComponent in Instruct7Components:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+Instruct7Clock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
+
+# -------Run Routine "Instruct7"-------
+while continueRoutine:
+    # get current time
+    t = Instruct7Clock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=Instruct7Clock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *text_3* updates
+    if text_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        text_3.frameNStart = frameN  # exact frame index
+        text_3.tStart = t  # local t and not account for scr refresh
+        text_3.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(text_3, 'tStartRefresh')  # time at next scr refresh
+        text_3.setAutoDraw(True)
+    
+    # *key_resp_9* updates
+    waitOnFlip = False
+    if key_resp_9.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        key_resp_9.frameNStart = frameN  # exact frame index
+        key_resp_9.tStart = t  # local t and not account for scr refresh
+        key_resp_9.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(key_resp_9, 'tStartRefresh')  # time at next scr refresh
+        key_resp_9.status = STARTED
+        # keyboard checking is just starting
+        waitOnFlip = True
+        win.callOnFlip(key_resp_9.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_9.clearEvents, eventType='keyboard')  # clear events on next screen flip
+    if key_resp_9.status == STARTED and not waitOnFlip:
+        theseKeys = key_resp_9.getKeys(keyList=['space'], waitRelease=False)
+        _key_resp_9_allKeys.extend(theseKeys)
+        if len(_key_resp_9_allKeys):
+            key_resp_9.keys = _key_resp_9_allKeys[-1].name  # just the last key pressed
+            key_resp_9.rt = _key_resp_9_allKeys[-1].rt
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in Instruct7Components:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "Instruct7"-------
+for thisComponent in Instruct7Components:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+thisExp.addData('text_3.started', text_3.tStartRefresh)
+thisExp.addData('text_3.stopped', text_3.tStopRefresh)
+# check responses
+if key_resp_9.keys in ['', [], None]:  # No response was made
+    key_resp_9.keys = None
+thisExp.addData('key_resp_9.keys',key_resp_9.keys)
+if key_resp_9.keys != None:  # we had a response
+    thisExp.addData('key_resp_9.rt', key_resp_9.rt)
+thisExp.addData('key_resp_9.started', key_resp_9.tStartRefresh)
+thisExp.addData('key_resp_9.stopped', key_resp_9.tStopRefresh)
+thisExp.nextEntry()
+# the Routine "Instruct7" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
 # ------Prepare to start Routine "Intro"-------
 continueRoutine = True
 # update component parameters for each repeat
@@ -1712,28 +1939,6 @@ for t in range(0,num_trial):
     r_val.append(val)
     l_val.append(100-val)
 
-#counterbalancing = int(expInfo['condition'])
-
-#if counterbalancing % 2:
-#    trial_list_s = zero*8 + one*2
-#    cb_hint_chance = 0.8
-
-#if counterbalancing //4:
-#    trial_list_s = zero*2 + one*8
-#    cb_hint_chance = 0.8
-
-
-
-
-#if counterbalancing // 4:
-#    cb_hint_chance_1 = 0.75
-#    cb_hint_chance_2 = 0.15
-#else:
-#    cb_hint_chance_1 = 0.25
-#    cb_hint_chance_2 = 0.85
-
-
-#if (condition_value % 4) // 2:
 # keep track of which components have finished
 IntroComponents = []
 for thisComponent in IntroComponents:
@@ -2057,11 +2262,11 @@ for thisTrial in trials:
             textFeedback = fdbck_loseText
             soundFeedback = None
     # If response is too slow
-    #else:
-    #    pass select_pos 
-    #    imageVariable = imagePath + "piratetask.bmp"
-    #    score_update = 0
-    #    textFeedback = fdbck_tooslowText
+    else:
+        select_pos = (2, 2) # Set the position to be off-screen
+        imageVariable = imagePath + "piratetask.bmp"
+        score_update = 0
+        textFeedback = fdbck_tooslowText
     
     old_player_score = player_score
     new_player_score = player_score + score_update
