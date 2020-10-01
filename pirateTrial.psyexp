@@ -683,7 +683,7 @@
       </CodeComponent>
       <RatingScaleComponent name="TreasureLocation">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="win=win,&amp;#10;marker='slider',&amp;#10;pos=[0, -0.4],&amp;#10;low=0, &amp;#10;high=100,&amp;#10;labels=['All Green', ' All Blue'],&amp;#10;size = 1.0, &amp;#10;textSize=1.0,&amp;#10;textFont = 'Helvetica Bold',&amp;#10;textColor = 'Black',&amp;#10;markerColor = 'yellow',&amp;#10;singleClick = False,&amp;#10;tickMarks = None,&amp;#10;showAccept=True,&amp;#10;acceptKeys='return',&amp;#10;acceptPreText='key, click',&amp;#10;acceptText='click to accept',&amp;#10;lineColor='White',&amp;#10;showValue=False,&amp;#10;stretch=2.0,&amp;#10;tickHeight=0,&amp;#10;scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ',&amp;#10;markerStart='5'" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="win=win,&amp;#10;marker='slider',&amp;#10;pos=[0, -0.2],&amp;#10;low=0, &amp;#10;high=100,&amp;#10;labels=['All Green', ' All Blue'],&amp;#10;size = 1.0, &amp;#10;textSize=1.0,&amp;#10;textFont = 'Helvetica Bold',&amp;#10;textColor = 'Black',&amp;#10;markerColor = 'yellow',&amp;#10;singleClick = False,&amp;#10;tickMarks = None,&amp;#10;showAccept=True,&amp;#10;acceptKeys='return',&amp;#10;acceptPreText='key, click',&amp;#10;acceptText='click to accept',&amp;#10;lineColor='White',&amp;#10;showValue=False,&amp;#10;stretch=2.0,&amp;#10;tickHeight=0,&amp;#10;scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ',&amp;#10;markerStart='5'" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
@@ -714,7 +714,7 @@
       </RatingScaleComponent>
       <RatingScaleComponent name="HelpfulHint">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="win=win,&amp;#10;marker='slider',&amp;#10;pos=[0, 0.4],&amp;#10;low=0, &amp;#10;high=100,&amp;#10;labels=['Always unhelpful', 'Always helpful'],&amp;#10;scale='Was the clue more often helpful or unhelpful to find the treasure? ',&amp;#10;markerStart='5',&amp;#10;size = 1.0, &amp;#10;textSize=1.0,&amp;#10;textFont = 'Helvetica Bold',&amp;#10;textColor = 'Black',&amp;#10;markerColor = 'yellow',&amp;#10;singleClick = False,&amp;#10;tickMarks = None,&amp;#10;showAccept=True,&amp;#10;acceptKeys='return',&amp;#10;acceptPreText='key, click',&amp;#10;acceptText='click to accept',&amp;#10;lineColor='White',&amp;#10;showValue=False,&amp;#10;stretch=2.0,&amp;#10;tickHeight=0,&amp;#10;&amp;#10;" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="win=win,&amp;#10;marker='slider',&amp;#10;pos=[0, 0.6],&amp;#10;low=0, &amp;#10;high=100,&amp;#10;labels=['Always unhelpful', 'Always helpful'],&amp;#10;scale='Was the clue more often helpful or unhelpful to find the treasure? ',&amp;#10;markerStart='5',&amp;#10;size = 1.0, &amp;#10;textSize=1.0,&amp;#10;textFont = 'Helvetica Bold',&amp;#10;textColor = 'Black',&amp;#10;markerColor = 'yellow',&amp;#10;singleClick = False,&amp;#10;tickMarks = None,&amp;#10;showAccept=True,&amp;#10;acceptKeys='return',&amp;#10;acceptPreText='key, click',&amp;#10;acceptText='click to accept',&amp;#10;lineColor='White',&amp;#10;showValue=False,&amp;#10;stretch=2.0,&amp;#10;tickHeight=0,&amp;#10;&amp;#10;" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
@@ -761,6 +761,30 @@
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
+      <TextComponent name="text_4">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="name" updates="None" val="text_4" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.4)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Press the space bar to progress. Remember, if you are correct you will advance. If incorrect, you will view the pirates again and have another go at the questions." valType="str"/>
+        <Param name="units" updates="None" val="norm" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
     </Routine>
     <Routine name="Instruct1">
       <CodeComponent name="setup_code">
