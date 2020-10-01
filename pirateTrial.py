@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on September 29, 2020, at 14:20
+    on September 29, 2020, at 14:24
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -367,7 +367,16 @@ famfdbck_text = visual.TextStim(win=win, name='famfdbck_text',
 
 # Initialize components for Routine "ratioCheck"
 ratioCheckClock = core.Clock()
-TreasureLocation = visual.RatingScale(win=win, name='TreasureLocation', marker='slider', size=1.0, pos=[0.0, -0.4], low=0, high=10, labels=['All green', ' All blue'], scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ', markerStart='5')
+TreasureLocation = visual.RatingScale(win=win, name='TreasureLocation', 
+name='TreasureLocation', 
+marker='slider', 
+size=1.0, 
+pos=[0.0, -0.4], 
+low=0, 
+high=10, 
+labels=['All green', ' All blue'], 
+scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ',
+markerStart='5')
 HelpfulHint = visual.RatingScale(win=win, name='HelpfulHint', marker='slider', size=1.0, pos=[0.0, 0.2], low=0, high=10, labels=['Always unhelpful', ' Always helpful'], scale='Was the clue more often helpful or unhelpful to find the treasure? ')
 key_resp_2 = keyboard.Keyboard()
 

@@ -683,7 +683,7 @@
       </CodeComponent>
       <RatingScaleComponent name="TreasureLocation">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="win=win,&amp;#10;marker='slider',&amp;#10;pos=[0, -0.4],&amp;#10;low=0, &amp;#10;high=100,&amp;#10;labels=['All Green', ' All Blue'],&amp;#10;size = 1.0, &amp;#10;textSize=1.0,&amp;#10;textFont = 'Helvetica Bold',&amp;#10;textColor = 'Black',&amp;#10;markerColor = 'yellow',&amp;#10;singleClick = False,&amp;#10;tickMarks = None,&amp;#10;showAccept=True,&amp;#10;acceptKeys='return',&amp;#10;acceptPreText='key, click',&amp;#10;acceptText='click to accept',&amp;#10;lineColor='White',&amp;#10;showValue=False,&amp;#10;stretch=2.0,&amp;#10;tickHeight=0,&amp;#10;scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ',&amp;#10;markerStart='5'" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
@@ -714,7 +714,7 @@
       </RatingScaleComponent>
       <RatingScaleComponent name="HelpfulHint">
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
-        <Param name="customize_everything" updates="constant" val="" valType="str"/>
+        <Param name="customize_everything" updates="constant" val="win=win,&amp;#10;marker='slider',&amp;#10;pos=[0, 0.4],&amp;#10;low=0, &amp;#10;high=100,&amp;#10;labels=['Always unhelpful', 'Always helpful'],&amp;#10;scale='Was the clue more often helpful or unhelpful to find the treasure? ',&amp;#10;markerStart='5',&amp;#10;size = 1.0, &amp;#10;textSize=1.0,&amp;#10;textFont = 'Helvetica Bold',&amp;#10;textColor = 'Black',&amp;#10;markerColor = 'yellow',&amp;#10;singleClick = False,&amp;#10;tickMarks = None,&amp;#10;showAccept=True,&amp;#10;acceptKeys='return',&amp;#10;acceptPreText='key, click',&amp;#10;acceptText='click to accept',&amp;#10;lineColor='White',&amp;#10;showValue=False,&amp;#10;stretch=2.0,&amp;#10;tickHeight=0,&amp;#10;&amp;#10;" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
