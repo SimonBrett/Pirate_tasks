@@ -1476,7 +1476,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.&amp;#10;&amp;#10;&amp;#10;" valType="str"/>
+        <Param name="text" updates="constant" val="If you think the green pirate is telling the truth and has the treasure, press the LEFT arrow key . If you think the blue pirate is telling the truth and has the treasure, press the RIGHT arrow key.&amp;#10;&amp;#10;&amp;#10;" valType="str"/>
         <Param name="units" updates="None" val="norm" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="1.75" valType="code"/>
       </TextComponent>
@@ -1548,7 +1548,7 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="nReps" updates="None" val="10" valType="code"/>
       <Param name="name" updates="None" val="fam_trials" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
