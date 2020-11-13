@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on September 29, 2020, at 14:24
+    on November 13, 2020, at 17:02
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -268,7 +268,7 @@ spacebar_text_3 = visual.TextStim(win=win, name='spacebar_text_3',
 # Initialize components for Routine "Instruct4"
 Instruct4Clock = core.Clock()
 Instruct_text_4 = visual.TextStim(win=win, name='Instruct_text_4',
-    text="But the pirate who is tricking you *might* not always be the same. It *could* change throughout the game.\n\nLet's watch the pirates now. Let's see who has treasure in their chest and who has an empty chest, and if the clue is helpful or unhelpful.",
+    text="But the pirate who is tricking you *might* not always be the same. It *could* change throughout the game.\n\nLet's watch the pirates now. Let's see who has treasure in their chest and who has an empty chest, and if the clue is helpful or unhelpful.\n\nTo check you are watching carefully, you will be asked two questions after watching the pirates. If you get these questions correct, you will progress to the next stage. If you are incorrect, you will view the pirates again and have another chance to answer the questions correctly.",
     font='Arial',
     units='norm', pos=(0, 0), height=0.1, wrapWidth=1.75, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
@@ -276,7 +276,7 @@ Instruct_text_4 = visual.TextStim(win=win, name='Instruct_text_4',
     depth=0.0);
 key_resp_6 = keyboard.Keyboard()
 spacebar_text_4 = visual.TextStim(win=win, name='spacebar_text_4',
-    text='Press the space bar to begin',
+    text='Press the Space Bar to begin',
     font='Arial',
     units='norm', pos=(0, -0.8), height=0.08, wrapWidth=1.75, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
@@ -368,17 +368,61 @@ famfdbck_text = visual.TextStim(win=win, name='famfdbck_text',
 # Initialize components for Routine "ratioCheck"
 ratioCheckClock = core.Clock()
 TreasureLocation = visual.RatingScale(win=win, name='TreasureLocation', 
-name='TreasureLocation', 
-marker='slider', 
-size=1.0, 
-pos=[0.0, -0.4], 
+marker='slider',
+pos=[0, -0.2],
 low=0, 
-high=10, 
-labels=['All green', ' All blue'], 
+high=100,
+labels=['All Green', ' All Blue'],
+size = 1.0, 
+textSize=1.0,
+textFont = 'Helvetica Bold',
+textColor = 'Black',
+markerColor = 'yellow',
+singleClick = False,
+tickMarks = None,
+showAccept=True,
+acceptKeys='return',
+acceptPreText='key, click',
+acceptText='click to accept',
+lineColor='White',
+showValue=False,
+stretch=2.0,
+tickHeight=0,
 scale='Was the treasure more often in the green pirate’s chest or the blue pirate’s chest? ',
 markerStart='5')
-HelpfulHint = visual.RatingScale(win=win, name='HelpfulHint', marker='slider', size=1.0, pos=[0.0, 0.2], low=0, high=10, labels=['Always unhelpful', ' Always helpful'], scale='Was the clue more often helpful or unhelpful to find the treasure? ')
+HelpfulHint = visual.RatingScale(win=win, name='HelpfulHint', 
+marker='slider',
+pos=[0, 0.6],
+low=0, 
+high=100,
+labels=['Always unhelpful', 'Always helpful'],
+scale='Was the clue more often helpful or unhelpful to find the treasure? ',
+markerStart='5',
+size = 1.0, 
+textSize=1.0,
+textFont = 'Helvetica Bold',
+textColor = 'Black',
+markerColor = 'yellow',
+singleClick = False,
+tickMarks = None,
+showAccept=True,
+acceptKeys='return',
+acceptPreText='key, click',
+acceptText='click to accept',
+lineColor='White',
+showValue=False,
+stretch=2.0,
+tickHeight=0,
+
+)
 key_resp_2 = keyboard.Keyboard()
+text_4 = visual.TextStim(win=win, name='text_4',
+    text='After answering the questions, press the Space Bar to progress. Remember, if you are correct you will advance. If incorrect, you will view the pirates again and have another go at the questions.',
+    font='Arial',
+    units='norm', pos=(0, -0.8), height=0.07, wrapWidth=1.75, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-4.0);
 
 # Initialize components for Routine "Instruct5"
 Instruct5Clock = core.Clock()
@@ -390,28 +434,49 @@ text = visual.TextStim(win=win, name='text',
     languageStyle='LTR',
     depth=0.0);
 key_resp_7 = keyboard.Keyboard()
+spacebartext_5 = visual.TextStim(win=win, name='spacebartext_5',
+    text='Press Space Bar to continue',
+    font='Arial',
+    units='norm', pos=(0, -0.8), height=0.08, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
 
 # Initialize components for Routine "Instruct6"
 Instruct6Clock = core.Clock()
 text_2 = visual.TextStim(win=win, name='text_2',
-    text='Remember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. also, remember, the clues may be helpful or unhelpful and might change during the game too. \n\nWhen you have won a certain amount of coins you get to move on up to the next level. \n\n\n\nPress spacebar to continue\n\n',
+    text='Remember, just because a pirate says he’s got a lot of coins in his chest, it doesn’t mean he is telling the truth. also, remember, the clues may be helpful or unhelpful and might change during the game too. \n\nWhen you have won a certain amount of coins you get to move on up to the next level. \n\n\n\n\n\n',
     font='Arial',
-    units='norm', pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    units='norm', pos=(0, 0), height=0.1, wrapWidth=1.75, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=0.0);
 key_resp_8 = keyboard.Keyboard()
+spacebartext_6 = visual.TextStim(win=win, name='spacebartext_6',
+    text='Press Space Bar to continue',
+    font='Arial',
+    units='norm', pos=(0, -0.8), height=0.08, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
 
 # Initialize components for Routine "Instruct7"
 Instruct7Clock = core.Clock()
 text_3 = visual.TextStim(win=win, name='text_3',
-    text='If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.\n\n\n\n\n\nPress spacebar to continue\n',
+    text='If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.\n\n\n',
     font='Arial',
-    units='norm', pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    units='norm', pos=(0, 0), height=0.1, wrapWidth=1.75, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=0.0);
 key_resp_9 = keyboard.Keyboard()
+spacebartext_7 = visual.TextStim(win=win, name='spacebartext_7',
+    text='Press Space Bar to begin!',
+    font='Arial',
+    units='norm', pos=(0, -0.8), height=0.08, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
 
 # Initialize components for Routine "Intro"
 IntroClock = core.Clock()
@@ -516,7 +581,7 @@ L_text_2 = visual.TextStim(win=win, name='L_text_2',
 fdbck_text = visual.TextStim(win=win, name='fdbck_text',
     text='default text',
     font='Arial',
-    units='norm', pos=(0, 0.4), height=0.1, wrapWidth=1, ori=0, 
+    pos=(0, 0.4), height=0.1, wrapWidth=1, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-3.0);
@@ -678,12 +743,6 @@ while continueRoutine:
 for thisComponent in Instruct1Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('Instruct_1_text.started', Instruct_1_text.tStartRefresh)
-thisExp.addData('Instruct_1_text.stopped', Instruct_1_text.tStopRefresh)
-thisExp.addData('instruct_1_image.started', instruct_1_image.tStartRefresh)
-thisExp.addData('instruct_1_image.stopped', instruct_1_image.tStopRefresh)
-thisExp.addData('spacebar_text.started', spacebar_text.tStartRefresh)
-thisExp.addData('spacebar_text.stopped', spacebar_text.tStopRefresh)
 # the Routine "Instruct1" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -787,21 +846,13 @@ while continueRoutine:
 for thisComponent in Instruct2Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('instruct_2_text.started', instruct_2_text.tStartRefresh)
-thisExp.addData('instruct_2_text.stopped', instruct_2_text.tStopRefresh)
-thisExp.addData('instruct_2_image.started', instruct_2_image.tStartRefresh)
-thisExp.addData('instruct_2_image.stopped', instruct_2_image.tStopRefresh)
 # check responses
 if key_resp_4.keys in ['', [], None]:  # No response was made
     key_resp_4.keys = None
 thisExp.addData('key_resp_4.keys',key_resp_4.keys)
 if key_resp_4.keys != None:  # we had a response
     thisExp.addData('key_resp_4.rt', key_resp_4.rt)
-thisExp.addData('key_resp_4.started', key_resp_4.tStartRefresh)
-thisExp.addData('key_resp_4.stopped', key_resp_4.tStopRefresh)
 thisExp.nextEntry()
-thisExp.addData('spacebar_text_2.started', spacebar_text_2.tStartRefresh)
-thisExp.addData('spacebar_text_2.stopped', spacebar_text_2.tStopRefresh)
 # the Routine "Instruct2" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -914,23 +965,13 @@ while continueRoutine:
 for thisComponent in Instruct3Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('instruct_text_3.started', instruct_text_3.tStartRefresh)
-thisExp.addData('instruct_text_3.stopped', instruct_text_3.tStopRefresh)
-thisExp.addData('instruct_image_3.started', instruct_image_3.tStartRefresh)
-thisExp.addData('instruct_image_3.stopped', instruct_image_3.tStopRefresh)
-thisExp.addData('instruct_image_4.started', instruct_image_4.tStartRefresh)
-thisExp.addData('instruct_image_4.stopped', instruct_image_4.tStopRefresh)
 # check responses
 if key_resp_5.keys in ['', [], None]:  # No response was made
     key_resp_5.keys = None
 thisExp.addData('key_resp_5.keys',key_resp_5.keys)
 if key_resp_5.keys != None:  # we had a response
     thisExp.addData('key_resp_5.rt', key_resp_5.rt)
-thisExp.addData('key_resp_5.started', key_resp_5.tStartRefresh)
-thisExp.addData('key_resp_5.stopped', key_resp_5.tStopRefresh)
 thisExp.nextEntry()
-thisExp.addData('spacebar_text_3.started', spacebar_text_3.tStartRefresh)
-thisExp.addData('spacebar_text_3.stopped', spacebar_text_3.tStopRefresh)
 # the Routine "Instruct3" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -1025,19 +1066,13 @@ while continueRoutine:
 for thisComponent in Instruct4Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('Instruct_text_4.started', Instruct_text_4.tStartRefresh)
-thisExp.addData('Instruct_text_4.stopped', Instruct_text_4.tStopRefresh)
 # check responses
 if key_resp_6.keys in ['', [], None]:  # No response was made
     key_resp_6.keys = None
 thisExp.addData('key_resp_6.keys',key_resp_6.keys)
 if key_resp_6.keys != None:  # we had a response
     thisExp.addData('key_resp_6.rt', key_resp_6.rt)
-thisExp.addData('key_resp_6.started', key_resp_6.tStartRefresh)
-thisExp.addData('key_resp_6.stopped', key_resp_6.tStopRefresh)
 thisExp.nextEntry()
-thisExp.addData('spacebar_text_4.started', spacebar_text_4.tStartRefresh)
-thisExp.addData('spacebar_text_4.stopped', spacebar_text_4.tStopRefresh)
 # the Routine "Instruct4" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -1360,18 +1395,6 @@ for thisFam_repeat in fam_repeat:
         for thisComponent in famTrialComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        fam_trials.addData('famBackground.started', famBackground.tStartRefresh)
-        fam_trials.addData('famBackground.stopped', famBackground.tStopRefresh)
-        fam_trials.addData('famHint.started', famHint.tStartRefresh)
-        fam_trials.addData('famHint.stopped', famHint.tStopRefresh)
-        fam_trials.addData('famR_text.started', famR_text.tStartRefresh)
-        fam_trials.addData('famR_text.stopped', famR_text.tStopRefresh)
-        fam_trials.addData('famL_text.started', famL_text.tStartRefresh)
-        fam_trials.addData('famL_text.stopped', famL_text.tStopRefresh)
-        fam_trials.addData('famSelect_pos.started', famSelect_pos.tStartRefresh)
-        fam_trials.addData('famSelect_pos.stopped', famSelect_pos.tStopRefresh)
-        fam_trials.addData('famFixation.started', famFixation.tStartRefresh)
-        fam_trials.addData('famFixation.stopped', famFixation.tStopRefresh)
         
         # ------Prepare to start Routine "famFeedback"-------
         continueRoutine = True
@@ -1494,14 +1517,6 @@ for thisFam_repeat in fam_repeat:
         for thisComponent in famFeedbackComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        fam_trials.addData('famImage.started', famImage.tStartRefresh)
-        fam_trials.addData('famImage.stopped', famImage.tStopRefresh)
-        fam_trials.addData('fam_Rtext_2.started', fam_Rtext_2.tStartRefresh)
-        fam_trials.addData('fam_Rtext_2.stopped', fam_Rtext_2.tStopRefresh)
-        fam_trials.addData('fam_Ltext_2.started', fam_Ltext_2.tStartRefresh)
-        fam_trials.addData('fam_Ltext_2.stopped', fam_Ltext_2.tStopRefresh)
-        fam_trials.addData('famfdbck_text.started', famfdbck_text.tStartRefresh)
-        fam_trials.addData('famfdbck_text.stopped', famfdbck_text.tStopRefresh)
         thisExp.nextEntry()
         
     # completed 1 repeats of 'fam_trials'
@@ -1516,7 +1531,7 @@ for thisFam_repeat in fam_repeat:
     key_resp_2.rt = []
     _key_resp_2_allKeys = []
     # keep track of which components have finished
-    ratioCheckComponents = [TreasureLocation, HelpfulHint, key_resp_2]
+    ratioCheckComponents = [TreasureLocation, HelpfulHint, key_resp_2, text_4]
     for thisComponent in ratioCheckComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -1577,6 +1592,15 @@ for thisFam_repeat in fam_repeat:
                 # a response ends the routine
                 continueRoutine = False
         
+        # *text_4* updates
+        if text_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            text_4.frameNStart = frameN  # exact frame index
+            text_4.tStart = t  # local t and not account for scr refresh
+            text_4.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(text_4, 'tStartRefresh')  # time at next scr refresh
+            text_4.setAutoDraw(True)
+        
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
             core.quit()
@@ -1602,33 +1626,35 @@ for thisFam_repeat in fam_repeat:
     
     if counterbalancing < 5 and counterbalancing % 2:
         
-        if TreasureLocation.getRating() < 5 and HelpfulHint.getRating() > 5:
+        if TreasureLocation.getRating() < 40 and HelpfulHint.getRating() > 60:
             fam_repeat.finished = 1
             
     elif counterbalancing >= 5 and counterbalancing % 2:
         
-        if TreasureLocation.getRating() < 5 and HelpfulHint.getRating() < 5:
+        if TreasureLocation.getRating() < 40 and HelpfulHint.getRating() < 40:
             fam_repeat.finished = 1
             
     elif counterbalancing < 5 and not counterbalancing % 2:
         
-        if TreasureLocation.getRating() > 5 and HelpfulHint.getRating() > 5:
+        if TreasureLocation.getRating() > 60 and HelpfulHint.getRating() > 60:
             fam_repeat.finished = 1
             
     elif counterbalancing >= 5 and not counterbalancing % 2:
         
-        if TreasureLocation.getRating() > 5 and HelpfulHint.getRating() < 5:
+        if TreasureLocation.getRating() > 60 and HelpfulHint.getRating() < 40:
             fam_repeat.finished = 1
     # store data for fam_repeat (TrialHandler)
-    fam_repeat.addData('TreasureLocation.response', TreasureLocation.getRating())
-    fam_repeat.addData('TreasureLocation.rt', TreasureLocation.getRT())
-    fam_repeat.addData('TreasureLocation.started', TreasureLocation.tStart)
-    fam_repeat.addData('TreasureLocation.stopped', TreasureLocation.tStop)
+    #fam_repeat.addData('TreasureLocation.response', TreasureLocation.getRating())
+    #fam_repeat.addData('TreasureLocation.rt', TreasureLocation.getRT())
+    #fam_repeat.addData('TreasureLocation.started', TreasureLocation.tStart)
+    #fam_repeat.addData('TreasureLocation.stopped', TreasureLocation.tStop)
     # store data for fam_repeat (TrialHandler)
-    fam_repeat.addData('HelpfulHint.response', HelpfulHint.getRating())
-    fam_repeat.addData('HelpfulHint.rt', HelpfulHint.getRT())
-    fam_repeat.addData('HelpfulHint.started', HelpfulHint.tStart)
-    fam_repeat.addData('HelpfulHint.stopped', HelpfulHint.tStop)
+    #fam_repeat.addData('HelpfulHint.response', HelpfulHint.getRating())
+    #fam_repeat.addData('HelpfulHint.rt', HelpfulHint.getRT())
+    #fam_repeat.addData('HelpfulHint.started', HelpfulHint.tStart)
+    #fam_repeat.addData('HelpfulHint.stopped', HelpfulHint.tStop)
+    #fam_repeat.addData('text_4.started', text_4.tStartRefresh)
+    #fam_repeat.addData('text_4.stopped', text_4.tStopRefresh)
     # the Routine "ratioCheck" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
@@ -1643,7 +1669,7 @@ key_resp_7.keys = []
 key_resp_7.rt = []
 _key_resp_7_allKeys = []
 # keep track of which components have finished
-Instruct5Components = [text, key_resp_7]
+Instruct5Components = [text, key_resp_7, spacebartext_5]
 for thisComponent in Instruct5Components:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -1697,6 +1723,15 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    # *spacebartext_5* updates
+    if spacebartext_5.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        spacebartext_5.frameNStart = frameN  # exact frame index
+        spacebartext_5.tStart = t  # local t and not account for scr refresh
+        spacebartext_5.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(spacebartext_5, 'tStartRefresh')  # time at next scr refresh
+        spacebartext_5.setAutoDraw(True)
+    
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
@@ -1718,16 +1753,12 @@ while continueRoutine:
 for thisComponent in Instruct5Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('text.started', text.tStartRefresh)
-thisExp.addData('text.stopped', text.tStopRefresh)
 # check responses
 if key_resp_7.keys in ['', [], None]:  # No response was made
     key_resp_7.keys = None
 thisExp.addData('key_resp_7.keys',key_resp_7.keys)
 if key_resp_7.keys != None:  # we had a response
     thisExp.addData('key_resp_7.rt', key_resp_7.rt)
-thisExp.addData('key_resp_7.started', key_resp_7.tStartRefresh)
-thisExp.addData('key_resp_7.stopped', key_resp_7.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instruct5" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -1739,7 +1770,7 @@ key_resp_8.keys = []
 key_resp_8.rt = []
 _key_resp_8_allKeys = []
 # keep track of which components have finished
-Instruct6Components = [text_2, key_resp_8]
+Instruct6Components = [text_2, key_resp_8, spacebartext_6]
 for thisComponent in Instruct6Components:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -1793,6 +1824,15 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    # *spacebartext_6* updates
+    if spacebartext_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        spacebartext_6.frameNStart = frameN  # exact frame index
+        spacebartext_6.tStart = t  # local t and not account for scr refresh
+        spacebartext_6.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(spacebartext_6, 'tStartRefresh')  # time at next scr refresh
+        spacebartext_6.setAutoDraw(True)
+    
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
@@ -1814,16 +1854,12 @@ while continueRoutine:
 for thisComponent in Instruct6Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('text_2.started', text_2.tStartRefresh)
-thisExp.addData('text_2.stopped', text_2.tStopRefresh)
 # check responses
 if key_resp_8.keys in ['', [], None]:  # No response was made
     key_resp_8.keys = None
 thisExp.addData('key_resp_8.keys',key_resp_8.keys)
 if key_resp_8.keys != None:  # we had a response
     thisExp.addData('key_resp_8.rt', key_resp_8.rt)
-thisExp.addData('key_resp_8.started', key_resp_8.tStartRefresh)
-thisExp.addData('key_resp_8.stopped', key_resp_8.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instruct6" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -1835,7 +1871,7 @@ key_resp_9.keys = []
 key_resp_9.rt = []
 _key_resp_9_allKeys = []
 # keep track of which components have finished
-Instruct7Components = [text_3, key_resp_9]
+Instruct7Components = [text_3, key_resp_9, spacebartext_7]
 for thisComponent in Instruct7Components:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -1889,6 +1925,15 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    # *spacebartext_7* updates
+    if spacebartext_7.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        spacebartext_7.frameNStart = frameN  # exact frame index
+        spacebartext_7.tStart = t  # local t and not account for scr refresh
+        spacebartext_7.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(spacebartext_7, 'tStartRefresh')  # time at next scr refresh
+        spacebartext_7.setAutoDraw(True)
+    
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
@@ -1910,16 +1955,12 @@ while continueRoutine:
 for thisComponent in Instruct7Components:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-thisExp.addData('text_3.started', text_3.tStartRefresh)
-thisExp.addData('text_3.stopped', text_3.tStopRefresh)
 # check responses
 if key_resp_9.keys in ['', [], None]:  # No response was made
     key_resp_9.keys = None
 thisExp.addData('key_resp_9.keys',key_resp_9.keys)
 if key_resp_9.keys != None:  # we had a response
     thisExp.addData('key_resp_9.rt', key_resp_9.rt)
-thisExp.addData('key_resp_9.started', key_resp_9.tStartRefresh)
-thisExp.addData('key_resp_9.stopped', key_resp_9.tStopRefresh)
 thisExp.nextEntry()
 # the Routine "Instruct7" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
