@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on November 13, 2020, at 17:02
+    on November 17, 2020, at 13:49
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -463,7 +463,7 @@ spacebartext_6 = visual.TextStim(win=win, name='spacebartext_6',
 # Initialize components for Routine "Instruct7"
 Instruct7Clock = core.Clock()
 text_3 = visual.TextStim(win=win, name='text_3',
-    text='If you think the green pirate is telling the truth and has the treasure, press this button . If you think the blue pirate is telling the truth and has the treasure, press this button.\n\n\n',
+    text='If you think the green pirate is telling the truth and has the treasure, press the LEFT arrow key . If you think the blue pirate is telling the truth and has the treasure, press the RIGHT arrow key.\n\n\n',
     font='Arial',
     units='norm', pos=(0, 0), height=0.1, wrapWidth=1.75, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
@@ -581,7 +581,7 @@ L_text_2 = visual.TextStim(win=win, name='L_text_2',
 fdbck_text = visual.TextStim(win=win, name='fdbck_text',
     text='default text',
     font='Arial',
-    pos=(0, 0.4), height=0.1, wrapWidth=1, ori=0, 
+    pos=(0, 0.4), height=0.1, wrapWidth=2, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-3.0);
@@ -1163,7 +1163,7 @@ for thisFam_repeat in fam_repeat:
     routineTimer.reset()
     
     # set up handler to look after randomisation of conditions etc
-    fam_trials = data.TrialHandler(nReps=1, method='random', 
+    fam_trials = data.TrialHandler(nReps=10, method='random', 
         extraInfo=expInfo, originPath=-1,
         trialList=data.importConditions('famtrialList.xlsx', selection='1'),
         seed=None, name='fam_trials')
@@ -1519,7 +1519,7 @@ for thisFam_repeat in fam_repeat:
                 thisComponent.setAutoDraw(False)
         thisExp.nextEntry()
         
-    # completed 1 repeats of 'fam_trials'
+    # completed 10 repeats of 'fam_trials'
     
     
     # ------Prepare to start Routine "ratioCheck"-------
@@ -1644,17 +1644,17 @@ for thisFam_repeat in fam_repeat:
         if TreasureLocation.getRating() > 60 and HelpfulHint.getRating() < 40:
             fam_repeat.finished = 1
     # store data for fam_repeat (TrialHandler)
-    #fam_repeat.addData('TreasureLocation.response', TreasureLocation.getRating())
-    #fam_repeat.addData('TreasureLocation.rt', TreasureLocation.getRT())
-    #fam_repeat.addData('TreasureLocation.started', TreasureLocation.tStart)
-    #fam_repeat.addData('TreasureLocation.stopped', TreasureLocation.tStop)
+    fam_repeat.addData('TreasureLocation.response', TreasureLocation.getRating())
+    fam_repeat.addData('TreasureLocation.rt', TreasureLocation.getRT())
+    fam_repeat.addData('TreasureLocation.started', TreasureLocation.tStart)
+    fam_repeat.addData('TreasureLocation.stopped', TreasureLocation.tStop)
     # store data for fam_repeat (TrialHandler)
-    #fam_repeat.addData('HelpfulHint.response', HelpfulHint.getRating())
-    #fam_repeat.addData('HelpfulHint.rt', HelpfulHint.getRT())
-    #fam_repeat.addData('HelpfulHint.started', HelpfulHint.tStart)
-    #fam_repeat.addData('HelpfulHint.stopped', HelpfulHint.tStop)
-    #fam_repeat.addData('text_4.started', text_4.tStartRefresh)
-    #fam_repeat.addData('text_4.stopped', text_4.tStopRefresh)
+    fam_repeat.addData('HelpfulHint.response', HelpfulHint.getRating())
+    fam_repeat.addData('HelpfulHint.rt', HelpfulHint.getRT())
+    fam_repeat.addData('HelpfulHint.started', HelpfulHint.tStart)
+    fam_repeat.addData('HelpfulHint.stopped', HelpfulHint.tStop)
+    fam_repeat.addData('text_4.started', text_4.tStartRefresh)
+    fam_repeat.addData('text_4.stopped', text_4.tStopRefresh)
     # the Routine "ratioCheck" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
