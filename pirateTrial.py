@@ -1,8 +1,8 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.1.3),
-    on November 17, 2020, at 13:49
+    on March 08, 2021, at 21:09
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -477,6 +477,9 @@ spacebartext_7 = visual.TextStim(win=win, name='spacebartext_7',
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=-2.0);
+
+# Initialize components for Routine "Calibration"
+CalibrationClock = core.Clock()
 
 # Initialize components for Routine "Intro"
 IntroClock = core.Clock()
@@ -1208,39 +1211,39 @@ for thisFam_repeat in fam_repeat:
         if fam_prob_bg[ currentLoop.thisN ]:
             # Determine whether the hint will be show on correct or incorrect side
             if hint_prob <= corr_hint_chance:
-                imageVariable = imagePath + "Lgreenhint.bmp"
+                imageVariable = imagePath + "Lgreenhint.png"
                 correct_hint = 1
             else:
-                imageVariable = imagePath + "Rbluehint.bmp"
+                imageVariable = imagePath + "Rbluehint.png"
                 correct_hint = 0
             
             # Determine whether the selection will be correct or incorrect
             if select_prob <= corr_select_chance:
                 select_pos = left_pos
-                imageFeedback = imagePath + "Lgreenwin.bmp" #  then display the treasure
+                imageFeedback = imagePath + "Lgreenwin.png" #  then display the treasure
                 textFeedback = fdbck_winText # Display positive feedback text
                 soundFeedback = "stimuli/coins-drop-1.wav"
             else:
                 select_pos = right_pos
-                imageFeedback = imagePath + "Rbluelose.bmp"# Otherwise show the empty chest
+                imageFeedback = imagePath + "Rbluelose.png"# Otherwise show the empty chest
                 textFeedback = fdbck_loseText
                 soundFeedback = None
         else:
             if hint_prob <= corr_hint_chance:
-                imageVariable = imagePath + "Rbluehint.bmp"
+                imageVariable = imagePath + "Rbluehint.png"
                 correct_hint = 1
             else:
-                imageVariable = imagePath + "Lgreenhint.bmp"
+                imageVariable = imagePath + "Lgreenhint.png"
                 correct_hint = 0
             
             if select_prob <= corr_select_chance:
                 select_pos = right_pos
-                imageFeedback = imagePath + "Rbluewin.bmp" # The predefined image path is added to the file name
+                imageFeedback = imagePath + "Rbluewin.png" # The predefined image path is added to the file name
                 textFeedback = fdbck_winText # Display positive feedback text
                 soundFeedback = "stimuli/coins-drop-1.wav"
             else:
                 select_pos = left_pos
-                imageFeedback = imagePath + "Lgreenlose.bmp"
+                imageFeedback = imagePath + "Lgreenlose.png"
                 textFeedback = fdbck_loseText
                 soundFeedback = None 
         
@@ -1965,6 +1968,75 @@ thisExp.nextEntry()
 # the Routine "Instruct7" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
+# ------Prepare to start Routine "Calibration"-------
+continueRoutine = True
+# update component parameters for each repeat
+#from psychopy.iohub import launchHubServer
+#from psychopy.core import getTime, wait
+
+
+#iohub_config = {'eyetracker.hw.sr_research.eyelink.EyeTracker':
+#                {'name': 'tracker',
+#                 'model_name': 'EYELINK 1000 DESKTOP',
+#                 'runtime_settings': {'sampling_rate': 1000,
+#                                      'track_eyes': 'RIGHT'}
+#                 }
+#                }
+#io = launchHubServer(**iohub_config)
+
+# Get the eye tracker device.
+#tracker = io.devices.tracker
+
+# run eyetracker calibration
+#r = tracker.runSetupProcedure()
+# keep track of which components have finished
+CalibrationComponents = []
+for thisComponent in CalibrationComponents:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+CalibrationClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
+
+# -------Run Routine "Calibration"-------
+while continueRoutine:
+    # get current time
+    t = CalibrationClock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=CalibrationClock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in CalibrationComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "Calibration"-------
+for thisComponent in CalibrationComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# the Routine "Calibration" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
 # ------Prepare to start Routine "Intro"-------
 continueRoutine = True
 # update component parameters for each repeat
@@ -2099,18 +2171,18 @@ for thisTrial in trials:
         correct_key = 'left'
         # Determine whether the hint will be show on correct or incorrect side
         if hint_prob <= corr_hint_chance:
-           imageVariable = imagePath + "Lgreenhint.bmp"
+           imageVariable = imagePath + "Lgreenhint.png"
            correct_hint = 1
         else:
-            imageVariable = imagePath + "Rbluehint.bmp"
+            imageVariable = imagePath + "Rbluehint.png"
             correct_hint = 0
     else:
         correct_key = 'right'
         if hint_prob <= corr_hint_chance:
-            imageVariable = imagePath + "Rbluehint.bmp"
+            imageVariable = imagePath + "Rbluehint.png"
             correct_hint = 1
         else:
-            imageVariable = imagePath + "Lgreenhint.bmp"
+            imageVariable = imagePath + "Lgreenhint.png"
             correct_hint = 0
     hint.setImage(imageVariable)
     R_text.setText(trial_r_val)
@@ -2290,31 +2362,31 @@ for thisTrial in trials:
     if key_resp.keys == 'left': # Start by checking which key was pressed
         select_pos = left_pos
         if key_resp.corr: # Then see if the response was correct
-            imageVariable = imagePath + "Lgreenwin.bmp" # If yes then display the treasure
+            imageVariable = imagePath + "Lgreenwin.png" # If yes then display the treasure
             score_update = trial_l_val # Add the value displayed to the players score
             textFeedback = fdbck_winText # Display positive feedback text
             soundFeedback = "stimuli/coins-drop-1.wav"
         else:
-            imageVariable = imagePath + "Lgreenlose.bmp"# Otherwise show the empty chest
+            imageVariable = imagePath + "Lgreenlose.png"# Otherwise show the empty chest
             score_update = 0
             textFeedback = fdbck_loseText
             soundFeedback = None
     elif key_resp.keys == 'right':# Same as above but on the other side 
         select_pos = right_pos
         if key_resp.corr:
-            imageVariable = imagePath + "Rbluewin.bmp" # The predefined image path is added to the file name
+            imageVariable = imagePath + "Rbluewin.png" # The predefined image path is added to the file name
             score_update = trial_r_val # Add the value displayed to the players score
             textFeedback = fdbck_winText # Display positive feedback text
             soundFeedback = "stimuli/coins-drop-1.wav"
         else:
-            imageVariable = imagePath + "Rbluelose.bmp"
+            imageVariable = imagePath + "Rbluelose.png"
             score_update = 0
             textFeedback = fdbck_loseText
             soundFeedback = None
     # If response is too slow
     else:
         select_pos = (2, 2) # Set the position to be off-screen
-        imageVariable = imagePath + "piratetask.bmp"
+        imageVariable = imagePath + "piratetask.png"
         score_update = 0
         textFeedback = fdbck_tooslowText
     
