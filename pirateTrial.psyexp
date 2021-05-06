@@ -37,7 +37,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="trial_r_val = r_val[currentLoop.thisN];&amp;#10;trial_l_val = l_val[currentLoop.thisN];&amp;#10;hint_prob = rand.uniform({&quot;size&quot;: 1});&amp;#10;hint_start = rand.uniform(3, 7);&amp;#10;resp_start = (hint_start + rand.uniform(3, 7));&amp;#10;left_pos = [(- 0.52), (- 0.32)];&amp;#10;right_pos = [0.52, (- 0.32)];&amp;#10;if ((currentLoop.thisN &lt; 30)) {&amp;#10;    corr_hint_chance = cb_hint_chance_1;&amp;#10;} else {&amp;#10;    if ((currentLoop.thisN &lt; 40)) {&amp;#10;        corr_hint_chance = 0.2;&amp;#10;    } else {&amp;#10;        if ((currentLoop.thisN &lt; 50)) {&amp;#10;            corr_hint_chance = 0.8;&amp;#10;        } else {&amp;#10;            if ((currentLoop.thisN &lt; 60)) {&amp;#10;                corr_hint_chance = 0.2;&amp;#10;            } else {&amp;#10;                if ((currentLoop.thisN &lt; 70)) {&amp;#10;                    corr_hint_chance = 0.8;&amp;#10;                } else {&amp;#10;                    if ((currentLoop.thisN &lt; 120)) {&amp;#10;                        corr_hint_chance = cb_hint_chance_2;&amp;#10;                    }&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;if (prob_bg[currentLoop.thisN]) {&amp;#10;    correct_key = &quot;left&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    correct_key = &quot;right&quot;;&amp;#10;    if ((hint_prob &lt;= corr_hint_chance)) {&amp;#10;        imageVariable = (imagePath + &quot;Rbluehint.bmp&quot;);&amp;#10;        correct_hint = 1;&amp;#10;    } else {&amp;#10;        imageVariable = (imagePath + &quot;Lgreenhint.bmp&quot;);&amp;#10;        correct_hint = 0;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="#Assuming you have a r_val and and l_val list:&amp;#10;&amp;#10;trial_r_val = r_val[ currentLoop.thisN ]&amp;#10;trial_l_val = l_val[ currentLoop.thisN ]&amp;#10;&amp;#10;# Generate uniformly distributed random number between 0 and 1&amp;#10;hint_prob = rand.uniform(size = 1)&amp;#10;&amp;#10;# Generate start times for hint and response window&amp;#10;hint_start = rand.uniform(3, 7)&amp;#10;resp_start = hint_start + rand.uniform(3, 7)&amp;#10;&amp;#10;# Set up selection positions&amp;#10;left_pos = (-0.52, -0.32)&amp;#10;right_pos = (0.52, -0.32)&amp;#10;&amp;#10;# Pre-generated array way of changing hint correct probability&amp;#10;#corr_hint_chance = hint_prob[ currentLoop.thisN ]&amp;#10;&amp;#10;# Multiple ifs way of changing hint correct probability&amp;#10;if currentLoop.thisN &lt; 30:&amp;#10;       corr_hint_chance = cb_hint_chance_1&amp;#10;elif currentLoop.thisN &lt; 40:&amp;#10;        corr_hint_chance = 0.2&amp;#10;elif currentLoop.thisN &lt; 50:&amp;#10;        corr_hint_chance = 0.8&amp;#10;elif currentLoop.thisN &lt; 60:&amp;#10;        corr_hint_chance = 0.2&amp;#10;elif currentLoop.thisN &lt; 70:&amp;#10;        corr_hint_chance = 0.8&amp;#10;elif currentLoop.thisN &lt; 120:&amp;#10;        corr_hint_chance = cb_hint_chance_2&amp;#10;&amp;#10;&amp;#10;# statement to define correct keys for trial&amp;#10;if prob_bg[ currentLoop.thisN ]:&amp;#10;    correct_key = 'left'&amp;#10;    # Determine whether the hint will be show on correct or incorrect side&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;       imageVariable = imagePath + &quot;Lgreenhint.png&quot;&amp;#10;       correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.png&quot;&amp;#10;        correct_hint = 0&amp;#10;else:&amp;#10;    correct_key = 'right'&amp;#10;    if hint_prob &lt;= corr_hint_chance:&amp;#10;        imageVariable = imagePath + &quot;Rbluehint.png&quot;&amp;#10;        correct_hint = 1&amp;#10;    else:&amp;#10;        imageVariable = imagePath + &quot;Lgreenhint.png&quot;&amp;#10;        correct_hint = 0" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -671,7 +671,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -792,7 +792,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="import {random as rand} from 'numpy';&amp;#10;var fdbck_loseText, fdbck_tooslowText, fdbck_winText, imagePath, imageVariable, left_pos, one, right_pos, soundFeedback, textFeedback, zero;&amp;#10;imagePath = &quot;stimuli/&quot;;&amp;#10;imageVariable = null;&amp;#10;textFeedback = null;&amp;#10;fdbck_winText = &quot;Well done you chose correctly!&quot;;&amp;#10;fdbck_loseText = &quot;Better luck next time!&quot;;&amp;#10;fdbck_tooslowText = &quot;Oops, you were too slow. Please respond quicker next time.&quot;;&amp;#10;soundFeedback = null;&amp;#10;zero = [0];&amp;#10;one = [1];&amp;#10;left_pos = [(- 0.52), (- 0.32)];&amp;#10;right_pos = [0.52, (- 0.32)];&amp;#10;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -1523,23 +1523,6 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
     </Routine>
-    <Routine name="Calibration">
-      <CodeComponent name="calibration">
-        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="/* Syntax Error: Fix Python code */" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="#from psychopy.iohub import launchHubServer&amp;#10;#from psychopy.core import getTime, wait&amp;#10;&amp;#10;&amp;#10;#iohub_config = {'eyetracker.hw.sr_research.eyelink.EyeTracker':&amp;#10;#                {'name': 'tracker',&amp;#10;#                 'model_name': 'EYELINK 1000 DESKTOP',&amp;#10;#                 'runtime_settings': {'sampling_rate': 1000,&amp;#10;#                                      'track_eyes': 'RIGHT'}&amp;#10;#                 }&amp;#10;#                }&amp;#10;#io = launchHubServer(**iohub_config)&amp;#10;&amp;#10;# Get the eye tracker device.&amp;#10;#tracker = io.devices.tracker&amp;#10;&amp;#10;# run eyetracker calibration&amp;#10;#r = tracker.runSetupProcedure()" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="name" updates="None" val="calibration" valType="code"/>
-      </CodeComponent>
-    </Routine>
   </Routines>
   <Flow>
     <Routine name="Instruct1"/>
@@ -1577,7 +1560,6 @@
     <Routine name="Instruct5"/>
     <Routine name="Instruct6"/>
     <Routine name="Instruct7"/>
-    <Routine name="Calibration"/>
     <Routine name="Intro"/>
     <LoopInitiator loopType="TrialHandler" name="trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
